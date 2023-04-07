@@ -11,6 +11,12 @@ const images = {
     10: require('~/assets/images/10.png'),
     iOS: require('~/assets/images/app-store.7af41463.png'),
     andRoid: require('~/assets/images/ch-play.61faad70.png'),
+    tacdaithan: require('~/assets/images/icon - tac dai than.e45376f3.png'),
+    docquyen: require('~/assets/images/icon - doc quyen.a4c49882.png'),
+    thinhhanhtuan: require('~/assets/images/icon - thinh hanh tuan.5916b25c.png'),
+    topngocphieu: require('~/assets/images/icon - top ngoc phieu.38a80139.png'),
+    truyenhot: require('~/assets/images/icon - truyen hot.937ea6eb.png'),
+    yeuthich: require('~/assets/images/icon - yeu thich.0609d170.png'),
 };
 
 export default images;

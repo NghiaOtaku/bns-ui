@@ -16,7 +16,7 @@ function Home() {
                 <NewestStory api="https://api.bachngocsach.vip/api/story-newest?per_page=12" />
 
                 {/* Newest Chapter api="https://api.bachngocsach.vip/api/latest-chapters?per_page=12"*/}
-                <NewestStory api="https://api.bachngocsach.vip/api/latest-chapters?per_page=12" />
+                <NewestChapter api="https://api.bachngocsach.vip/api/latest-chapters?per_page=12" />
             </div>
 
             {/* <Story /> */}

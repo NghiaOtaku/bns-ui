@@ -1,0 +1,69 @@
+.wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.125), 0 1px 3px rgba(0, 0, 0, 0.2);
+
+    .policy-card-title {
+        width: 100%;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+
+        h5 {
+            text-align: center;
+            font-size: 1.7rem;
+            font-weight: 600;
+            color: var(--main_color);
+        }
+    }
+    .policy {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 15px;
+        background-color: var(--bg_color);
+
+        .policy-link li {
+            list-style: inside;
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+
+            &:hover {
+                cursor: pointer;
+                color: var(--main_color);
+            }
+        }
+    }
+    .link-app {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        img {
+            width: auto;
+            height: 36px;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+    .support {
+        color: var(--main_color);
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+
+        &:hover {
+            cursor: pointer;
+            color: var(--main_color_hover);
+        }
+    }
+}

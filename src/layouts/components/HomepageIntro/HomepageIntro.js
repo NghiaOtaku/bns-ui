@@ -3,13 +3,17 @@ import axios from 'axios';
 
 import classNames from 'classnames/bind';
 import styles from './HomepageIntro.module.scss';
+import Category from './components/Category';
+import Info from './components/Info';
 
 const cx = classNames.bind(styles);
 
 function HomepageIntro() {
     const [slide, setSlide] = useState(0);
     const [story, setStory] = useState([]);
-    const [image, setImage] = useState(story);
+    const [image, setImage] = useState(
+        'https://api.bachngocsach.vip/storage/slider/dod7HsvvX9Eb8zCc2FXyU2otuQGTkOf2JIbOCPF7.png',
+    );
 
     // api https://api.bachngocsach.vip/api/sliders
 
@@ -28,21 +32,21 @@ function HomepageIntro() {
     }, []);
 
     // setImage(story[0].image);
-    // console.log(story);
+    // console.log(story[0].image);
 
     useEffect(() => {
-        // const handleTest = setInterval(() => {
-        //     console.log(story);
-        //     setSlide((prev) => {
-        //         if (prev < 3) {
-        //             setImage(story[prev + 1].image);
-        //             return prev + 1;
-        //         } else {
-        //             return (prev = 0);
-        //         }
-        //     });
-        // }, 2000);
-        // return () => clearInterval(handleTest);
+        const handleTest = setInterval(() => {
+            setSlide((prev) => {
+                if (prev < 3) {
+                    setImage(story[prev + 1].image);
+                    return prev + 1;
+                } else {
+                    setImage(story[0].image);
+                    return (prev = 0);
+                }
+            });
+        }, 3000);
+        return () => clearInterval(handleTest);
     }, [story]);
 
     // console.log(image);
@@ -50,7 +54,7 @@ function HomepageIntro() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('intro-category')}>
-                <p>category</p>
+                <Category />
             </div>
             <div className={cx('intro-slides')}>
                 <div className={cx('img-slides')}>
@@ -74,7 +78,7 @@ function HomepageIntro() {
                 </div>
             </div>
             <div className={cx('intro-infor')}>
-                <p>Info</p>
+                <Info />
             </div>
         </div>
     );

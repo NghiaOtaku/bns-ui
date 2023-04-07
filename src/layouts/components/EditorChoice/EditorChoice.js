@@ -34,7 +34,7 @@ function EditorChoice() {
         infinite: true,
         slidesToShow: 8,
         slidesToScroll: 1,
-        autoplay: false,
+        autoplay: true,
         speed: 500,
         autoplaySpeed: 3000,
         cssEase: 'ease-in',
