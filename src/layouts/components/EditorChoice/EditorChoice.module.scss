@@ -1,0 +1,110 @@
+.wrapper {
+    width: var(--default-layout-width);
+    margin-top: 1rem;
+    background-color: transparent;
+}
+
+.editor-choice-title {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+}
+
+.card-header {
+    padding: 12px 20px;
+    font-size: 2.4rem;
+}
+
+.card-more {
+    padding-right: 8px;
+    font-size: 1.4rem;
+}
+
+.editor-choice-slides {
+    position: relative;
+    height: 250px;
+    display: block;
+    margin-top: 10px;
+    background-color: transparent;
+    overflow: hidden;
+
+    .prev-btn {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        background-color: beige;
+        position: absolute;
+        top: 40%;
+        left: 0.5rem;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        .btn-icon {
+            font-size: 1.6rem;
+            color: var(--main_color);
+        }
+    }
+
+    .next-btn {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        background-color: beige;
+        position: absolute;
+        top: 40%;
+        right: 0.5rem;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        .btn-icon {
+            font-size: 1.6rem;
+            color: var(--main_color);
+        }
+    }
+}
+
+.card-story {
+    width: 143px;
+    height: 250px;
+    padding: 0 7.5px;
+    border-radius: 4px;
+
+    .cover {
+        border-radius: 5px;
+        overflow: hidden;
+        width: 125px;
+        box-shadow: 0 3px 14px 2px rgba(34, 34, 34, 0.08), 0 7px 10px 1px rgba(34, 34, 34, 0.1);
+
+        &:hover .custom-zoom-img {
+            cursor: pointer;
+            transform: scale(1.2);
+        }
+    }
+
+    h4 {
+        font-size: 1.8rem;
+        font-weight: 600;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        word-break: break-word;
+    }
+
+    p {
+        font-size: 1.4rem;
+        color: #6c757d;
+
+        &:hover {
+            cursor: pointer;
+            color: #007bff;
+        }
+    }
+}

@@ -1,0 +1,11 @@
+.cover {
+    border: 1px solid #000;
+    width: 90px;
+    overflow: hidden;
+    border-radius: 4px;
+
+    &:hover img {
+        cursor: pointer;
+        transform: scale(1.2);
+    }
+}

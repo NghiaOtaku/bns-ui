@@ -1,0 +1,12 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.container {
+    margin: 0 auto;
+    width: var(--default-layout-width);
+    // padding: 0px var(--default-layout-horizontal-spacer);
+    min-height: max-content;
+}

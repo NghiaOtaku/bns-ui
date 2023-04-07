@@ -1,0 +1,138 @@
+.newest-chapter {
+    margin-top: 15px;
+}
+
+.card-home {
+    margin: 0 7.5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 270px;
+    background-color: #f8f9fa;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.125), 0 1px 3px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    overflow: hidden;
+
+    .card-header {
+        width: 100%;
+        height: 50px;
+        padding: 0 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: solid 1px rgba(0, 0, 0, 0.125);
+
+        p {
+            font-size: 1.5rem;
+        }
+
+        .card-more {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+
+            .more-arrow-btn {
+                font-size: 1.6rem;
+                color: var(--main_color);
+            }
+
+            &:hover {
+                background-color: #ededee;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+button {
+    background-color: transparent;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.heading-list {
+    padding: 0;
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    overflow: hidden;
+
+    li {
+        padding: 10px 15px;
+        border-bottom: 1px solid #f4f4f4;
+
+        .list-group-item {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+
+            .list-name {
+                display: flex;
+                font-size: 1.4rem;
+                width: 75%;
+
+                .prefix-list-name {
+                    color: blue;
+                }
+
+                p {
+                    padding: 0 0.5rem;
+                    text-align: left;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 1;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    word-break: break-word;
+                }
+            }
+
+            .list-author {
+                width: 20%;
+
+                p {
+                    font-size: 0.9rem;
+                    text-align: left;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 1;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    word-break: break-word;
+                }
+            }
+        }
+
+        .cate-items {
+            width: 75%;
+            text-align: left;
+            .cate-items-btn {
+                p {
+                    color: #999;
+                    font-size: 1.3rem;
+                    text-align: left;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 1;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    word-break: break-word;
+                }
+            }
+        }
+        &:hover {
+            cursor: pointer;
+            background-color: #ededee;
+        }
+    }
+}

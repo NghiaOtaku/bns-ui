@@ -1,0 +1,143 @@
+//Story
+//Header
+.story-of-weeks {
+    flex: 1;
+    background-color: transparent;
+
+    .card-header {
+        background-color: #fff;
+        height: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        p {
+            padding: 0 15px;
+            font-size: 2.4rem;
+        }
+
+        .card-more {
+            padding: 0 0.8rem;
+            display: flex;
+            align-items: center;
+            color: var(--main_color);
+
+            p {
+                padding: 0 0.5rem;
+                font-size: 1.4rem;
+            }
+        }
+    }
+}
+
+//Cover Story
+.list-story {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    position: relative;
+
+    .card-story-full {
+        width: 48.5%;
+        display: flex;
+        padding: 4px 0 12px;
+
+        .novel-item {
+            display: flex;
+            flex-direction: row;
+            padding: 16px 15px;
+            background-color: #fff;
+            border-radius: 4px;
+
+            &:hover {
+                box-shadow: 2px 2px 9px rgba(0, 0, 0, 0.44);
+                transition: box-shadow 0.4s ease-in;
+
+                .custom-zoom-img {
+                    cursor: pointer;
+                    transform: scale(1.2);
+                }
+            }
+
+            .cover-story {
+                display: flex;
+                align-content: flex-start;
+                margin-top: 5px;
+                margin-right: 1rem;
+                overflow: hidden;
+                border-radius: 4px;
+                width: 90px;
+                height: 130px;
+            }
+            .story-intro {
+                width: 80%;
+                h4 {
+                    .title-text {
+                        font-size: 18px;
+                        font-weight: 500;
+                    }
+                }
+                .author-source {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+
+                    .author {
+                        color: #6c757d;
+                        font-size: 1.4rem;
+
+                        &:hover {
+                            color: #007bff;
+                        }
+                    }
+                    .badge-dich {
+                        font-size: 1.3rem;
+                        color: var(--text_color_translation);
+                        padding: 2px 8px;
+                        margin-right: 8px;
+                        border: solid 1px var(--text_color_translation);
+                        border-radius: 3px;
+                    }
+                }
+                .story-info {
+                    span {
+                        margin-right: 3px;
+                    }
+                    .text-danger {
+                        color: #dc3545;
+                    }
+
+                    .text-success {
+                        color: #28a745;
+                    }
+
+                    .text-primary {
+                        color: #007bff;
+                    }
+                }
+                .story-quote {
+                    display: flex;
+                    flex-direction: row;
+
+                    .quotes-icon {
+                        font-size: 1.2rem;
+                        padding-right: 4px;
+                    }
+
+                    blockquote {
+                        margin-top: 10px;
+                        font-size: 1.2rem;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 4;
+                        -webkit-box-orient: vertical;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        word-break: break-word;
+                    }
+                }
+            }
+        }
+    }
+}

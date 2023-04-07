@@ -1,0 +1,62 @@
+@import 'normalize.css';
+
+:root {
+    --main_color: #128c7e;
+    --main_color_hover: #0e6d62;
+    --text_color: rgba(0, 0, 0, 0.8);
+    --bg_color: #f8f9fa;
+    --text_color_translation: #00f;
+    --text_color_edit_nhanh: #90f;
+    --text_color_indite: #99cc32;
+    --text_color_convert: #64126b;
+    //Default Layout
+    --default-layout-header-height: 60px;
+    --default-navbar-header-height: 40px;
+    --default-layout-width: 1155px;
+    --default-homepage-intro-height: 300px;
+    --default-layout-horizontal-spacer: 24px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.6rem;
+    line-height: 1.5;
+    overflow-y: overlay;
+}
+
+button,
+input,
+tabindex {
+    border: none;
+    outline: none;
+}
+
+li,
+ul {
+    list-style: none outside none;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
