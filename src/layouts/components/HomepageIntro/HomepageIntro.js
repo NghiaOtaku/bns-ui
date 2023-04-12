@@ -11,9 +11,7 @@ const cx = classNames.bind(styles);
 function HomepageIntro() {
     const [slide, setSlide] = useState(0);
     const [story, setStory] = useState([]);
-    const [image, setImage] = useState(
-        'https://api.bachngocsach.vip/storage/slider/dod7HsvvX9Eb8zCc2FXyU2otuQGTkOf2JIbOCPF7.png',
-    );
+    const [image, setImage] = useState('');
 
     // api https://api.bachngocsach.vip/api/sliders
 
@@ -34,20 +32,20 @@ function HomepageIntro() {
     // setImage(story[0].image);
     // console.log(story[0].image);
 
-    useEffect(() => {
-        const handleTest = setInterval(() => {
-            setSlide((prev) => {
-                if (prev < 3) {
-                    setImage(story[prev + 1].image);
-                    return prev + 1;
-                } else {
-                    setImage(story[0].image);
-                    return (prev = 0);
-                }
-            });
-        }, 3000);
-        return () => clearInterval(handleTest);
-    }, [story]);
+    // useEffect(() => {
+    //     const handleTest = setInterval(() => {
+    //         setSlide((prev) => {
+    //             if (prev < 3) {
+    //                 setImage(story[prev + 1].image);
+    //                 return prev + 1;
+    //             } else {
+    //                 setImage(story[0].image);
+    //                 return (prev = 0);
+    //             }
+    //         });
+    //     }, 3000);
+    //     return () => clearInterval(handleTest);
+    // }, [story]);
 
     // console.log(image);
 
@@ -58,7 +56,7 @@ function HomepageIntro() {
             </div>
             <div className={cx('intro-slides')}>
                 <div className={cx('img-slides')}>
-                    <img className={cx('img-tag-slides')} src={image} alt={`Anh truyen`} />
+                    <img className={cx('img-tag-slides')} src={image || story[0]?.image} alt={`Anh truyen`} />
                 </div>
                 <div className={cx('text-slides')}>
                     {story.map((item, index) => {

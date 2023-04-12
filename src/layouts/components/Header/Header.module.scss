@@ -29,61 +29,11 @@
 }
 
 .logo-img {
-    width: 153px;
-}
-
-.action {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 170px;
-    height: var(--default-layout-header-height);
-}
 
-.noti-box {
-    display: flex;
-    flex-direction: row-reverse;
-
-    padding: 5px;
-
-    &:hover {
-        cursor: pointer;
-    }
-}
-
-.noti-icon {
-    width: var(--icon-width);
-    height: var(--icon-height);
-    color: var(--main_color);
-}
-
-.my-story {
-    // background-color: red;
-    padding: 5px;
-
-    &:hover {
-        cursor: pointer;
-    }
-}
-
-.bookmark-icon {
-    width: 3.7rem;
-    height: 2.7rem;
-}
-
-.profile {
-    &:hover {
-        cursor: pointer;
-    }
-}
-
-.avatar-icon {
-    width: 3.5rem;
-    height: 3.5rem;
-    border-radius: 50%;
-
-    &:hover {
-        cursor: pointer;
+    img {
+        width: 153px;
     }
 }
 

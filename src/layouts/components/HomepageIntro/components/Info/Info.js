@@ -3,6 +3,7 @@ import styles from './Info.module.scss';
 
 import images from '~/assets/images';
 import Image from '~/components/Image';
+import Button from '~/components/Button';
 
 const cx = classNames.bind(styles);
 
@@ -21,6 +22,10 @@ const POLICY_LINK = [
     },
 ];
 
+const replaceStr = (x) => {
+    return x.toLowerCase().replaceAll(' ', '-');
+};
+
 function Info() {
     return (
         <div className={cx('wrapper')}>
@@ -30,14 +35,28 @@ function Info() {
             <div className={cx('policy')}>
                 <ul className={cx('policy-link')}>
                     {POLICY_LINK.map((item, index) => (
-                        <li key={index}>{item.name}</li>
+                        <Button to={replaceStr(item.name)}>
+                            <li key={index}>{item.name}</li>
+                        </Button>
                     ))}
                 </ul>
                 <div className={cx('link-app')}>
-                    <Image src={images.andRoid} alt="Anh" />
-                    <Image src={images.iOS} alt="Anh" />
+                    <Button
+                        href="https://play.google.com/store/apps/details?id=vip.bachngocsach.app&pli=1"
+                        target="_blank"
+                    >
+                        <Image src={images.andRoid} alt="Anh" />
+                    </Button>
+                    <Button
+                        href="https://apps.apple.com/vn/app/b%E1%BA%A1ch-ng%E1%BB%8Dc-s%C3%A1ch/id1672932706"
+                        target="_blank"
+                    >
+                        <Image src={images.iOS} alt="Anh" />
+                    </Button>
                 </div>
-                <button className={cx('support')}>Phan hoi - Gop y</button>
+                <Button href="https://www.messenger.com/t/100012657404220/" className={cx('support')} target="_blank">
+                    Phan hoi - Gop y
+                </Button>
             </div>
         </div>
     );

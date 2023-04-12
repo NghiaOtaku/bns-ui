@@ -17,6 +17,7 @@ const images = {
     topngocphieu: require('~/assets/images/icon - top ngoc phieu.38a80139.png'),
     truyenhot: require('~/assets/images/icon - truyen hot.937ea6eb.png'),
     yeuthich: require('~/assets/images/icon - yeu thich.0609d170.png'),
+    tienthach: require('~/assets/images/tt.1618ff6e.png'),
 };
 
 export default images;

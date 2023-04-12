@@ -1,16 +1,15 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 // import lib
 import classNames from 'classnames/bind';
-import { faBell } from '@fortawesome/free-regular-svg-icons';
+import { Link } from 'react-router-dom';
 
 //import local code
 import styles from './Header.module.scss';
-import Bookmark from '~/assets/images/bookmark.6b699b4c.png';
-import DefaultAvatar from '~/assets/images/profile-avatar-default.png';
 import Logo from '~/assets/images/logo.49128792.png';
 import Search from '~/components/Search';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import NavbarItem from '~/components/NavbarItems/NavbarItem';
+import config from '~/config';
+import Action from '~/components/Action';
 
 const cx = classNames.bind(styles);
 
@@ -44,24 +43,15 @@ function Header() {
         <div className={cx('header')}>
             <header className={cx('wrapper')}>
                 <div className={cx('inner')}>
-                    {/* Logo */}
-                    <img src={Logo} alt="Logo Image" className={cx('logo-img')} />
+                    <Link className={cx('logo-img')} to={config.routes.home}>
+                        <img src={Logo} alt="Logo Image" />
+                    </Link>
 
                     {/* Search */}
                     <Search />
 
                     {/* action */}
-                    <div className={cx('action')}>
-                        <div className={cx('noti-box')}>
-                            <FontAwesomeIcon className={cx('noti-icon')} icon={faBell} />
-                        </div>
-                        <div className={cx('my-story')}>
-                            <img className={cx('bookmark-icon')} src={Bookmark} alt="bookmark" />
-                        </div>
-                        <div className={cx('profile')}>
-                            <img className={cx('avatar-icon')} src={DefaultAvatar} alt="avatar" />
-                        </div>
-                    </div>
+                    <Action />
                 </div>
             </header>
             <nav className={cx('nav-bar')}>

@@ -31,6 +31,12 @@
         padding: 15px;
         background-color: var(--bg_color);
 
+        .policy-link {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
         .policy-link li {
             list-style: inside;
             margin-bottom: 10px;

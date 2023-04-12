@@ -1,0 +1,15 @@
+.wrapper {
+    padding: 6px 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-height: min((100vh - 96px) - 60px, 734px);
+    height: 100%;
+    // min-height: 100px;
+    background: rgb(255, 255, 255);
+    box-shadow: rgb(0 0 0 / 12%) 0px 2px 12px;
+    border: 1px solid #128c7e;
+    border-radius: 8px;
+    overflow: hidden;
+    overflow-y: auto;
+}

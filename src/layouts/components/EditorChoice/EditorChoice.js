@@ -9,6 +9,7 @@ import styles from './EditorChoice.module.scss';
 import Image from '~/components/Image/Image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import Button from '~/components/Button';
 
 const cx = classNames.bind(styles);
 
@@ -34,7 +35,7 @@ function EditorChoice() {
         infinite: true,
         slidesToShow: 8,
         slidesToScroll: 1,
-        autoplay: true,
+        autoplay: false,
         speed: 500,
         autoplaySpeed: 3000,
         cssEase: 'ease-in',
@@ -45,7 +46,9 @@ function EditorChoice() {
         <div className={cx('wrapper')}>
             <div className={cx('editor-choice-title')}>
                 <h4 className={cx('card-header')}>Bien tap vien lua chon</h4>
-                <button className={cx('card-more')}>Tat ca</button>
+                <Button to="bien-tap-vien-lua-chon" className={cx('card-more')}>
+                    Tat ca
+                </Button>
             </div>
             <div className={cx('editor-choice-slides')}>
                 <Slider ref={slideRef} {...settings}>
@@ -61,12 +64,12 @@ function EditorChoice() {
                         );
                     })}
                 </Slider>
-                <button className={cx('prev-btn')} onClick={() => slideRef.current.slickPrev()}>
+                <Button className={cx('prev-btn')} onClick={() => slideRef.current.slickPrev()}>
                     <FontAwesomeIcon className={cx('btn-icon')} icon={faChevronLeft} />
-                </button>
-                <button className={cx('next-btn')} onClick={() => slideRef.current.slickNext()}>
+                </Button>
+                <Button className={cx('next-btn')} onClick={() => slideRef.current.slickNext()}>
                     <FontAwesomeIcon className={cx('btn-icon')} icon={faChevronRight} />
-                </button>
+                </Button>
             </div>
         </div>
     );

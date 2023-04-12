@@ -5,9 +5,12 @@ import styles from './NewestStory.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLongArrowAltRight } from '@fortawesome/free-solid-svg-icons';
 
+import Button from '~/components/Button';
+
 const cx = classNames.bind(styles);
 
-function NewestStory(props) {
+function NewestStory({ title, marginbottom, chuong = false, ...props }) {
+    console.log(chuong);
     let url = props.api;
     const [story, setStory] = useState([]);
 
@@ -25,10 +28,10 @@ function NewestStory(props) {
     }, []);
 
     return (
-        <div className={cx('newestStories')}>
+        <div style={{ marginBottom: marginbottom }} className={cx('newestStories')}>
             <div className={cx('card-home')}>
                 <h3 className={cx('card-header')}>
-                    <p>Truyen moi nhat</p>
+                    <p>{title}</p>
                     <button className={cx('card-more')}>
                         <FontAwesomeIcon className={cx('more-arrow-btn')} icon={faLongArrowAltRight} />
                     </button>
@@ -36,17 +39,30 @@ function NewestStory(props) {
                 <ul className={cx('heading-list')}>
                     {story.map((item, index) => {
                         let data = item.story || item || {};
+                        console.log(item);
                         return (
                             <li key={index}>
                                 <div className={cx('list-group-item')}>
-                                    <button className={cx('list-name')}>
+                                    <Button to={`truyen/${data.slug}`} prefix className={cx('list-name')}>
                                         <span className={cx('prefix-list-name')}>[{data.source.name}]</span>
                                         <p>{data.name}</p>
-                                    </button>
-                                    <button className={cx('list-author')}>
+                                    </Button>
+                                    <Button to={`tac-gia/${data.author.slug}`} className={cx('list-author')}>
                                         <p>{data.author.name}</p>
-                                    </button>
+                                    </Button>
                                 </div>
+                                {chuong ? (
+                                    <div className={cx('cate-items')}>
+                                        <Button
+                                            to={`${data.source.slug}/${data.slug}/${data.id}/${item?.chapter.slug}`}
+                                            className={cx('cate-items-btn')}
+                                        >
+                                            <p>{item?.chapter.name}</p>
+                                        </Button>
+                                    </div>
+                                ) : (
+                                    <></>
+                                )}
                             </li>
                         );
                     })}

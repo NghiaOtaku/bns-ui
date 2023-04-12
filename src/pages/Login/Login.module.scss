@@ -1,0 +1,44 @@
+.wrapper {
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-image: url('../../assets/images/bg-new-bns.f44db4a9.png');
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f2f3f5;
+}
+
+.container {
+    margin: 10vh 0;
+    width: 450px;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border: solid 5px #fff;
+    h1 {
+        text-align: center;
+    }
+
+    form {
+        height: 45vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+
+        input {
+            margin: 0 auto;
+            padding: 5px 15px;
+            width: 80%;
+            font-size: 2rem;
+            border-radius: 50px;
+        }
+
+        button {
+            font-size: 2rem;
+        }
+    }
+}

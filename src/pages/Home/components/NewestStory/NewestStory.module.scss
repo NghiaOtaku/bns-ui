@@ -54,7 +54,6 @@ button {
 
 .heading-list {
     padding: 0;
-    background-color: #f8f9fa;
     width: 100%;
     flex: 1;
     display: flex;
@@ -63,52 +62,75 @@ button {
     justify-content: space-between;
     overflow: hidden;
 
-    .list-group-item {
+    li {
         padding: 10px 15px;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
         border-bottom: 1px solid #f4f4f4;
 
-        .list-name {
+        .list-group-item {
+            width: 100%;
             display: flex;
-            font-size: 1.4rem;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+
+            .list-name {
+                display: flex;
+                font-size: 1.4rem;
+                width: 75%;
+
+                .prefix-list-name {
+                    white-space: nowrap;
+                    color: blue;
+                    text-align: left;
+                }
+
+                p {
+                    padding: 0 0.5rem;
+                    text-align: left;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 1;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    word-break: break-word;
+                }
+            }
+
+            .list-author {
+                width: 20%;
+                justify-content: flex-start;
+
+                p {
+                    font-size: 0.9rem;
+                    text-align: left;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 1;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    word-break: break-word;
+                }
+            }
+        }
+
+        .cate-items {
             width: 75%;
-
-            .prefix-list-name {
-                color: blue;
-            }
-
-            p {
-                padding: 0 0.5rem;
-                text-align: left;
-                display: -webkit-box;
-                -webkit-line-clamp: 1;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                word-break: break-word;
-            }
-        }
-
-        .list-author {
-            width: 20%;
-
-            p {
-                font-size: 0.9rem;
-                text-align: left;
-                display: -webkit-box;
-                -webkit-line-clamp: 1;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                word-break: break-word;
+            text-align: left;
+            .cate-items-btn {
+                p {
+                    color: #999;
+                    font-size: 1.3rem;
+                    text-align: left;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 1;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    word-break: break-word;
+                }
             }
         }
-
         &:hover {
-            cursor: pointer;
             background-color: #ededee;
         }
     }
