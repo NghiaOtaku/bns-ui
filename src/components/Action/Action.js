@@ -8,13 +8,13 @@ import { useEffect, useState } from 'react';
 //import local code
 import images from '~/assets/images';
 import styles from './Action.module.scss';
-import Bookmark from '~/assets/images/bookmark.6b699b4c.png';
 import DefaultAvatar from '~/assets/images/profile-avatar-default.png';
 import config from '~/config';
 import Button from '~/components/Button/Button';
 import { faRightToBracket, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { auth } from '~/firebase';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
+import ModalMode from '../Modal';
 
 const cx = classNames.bind(styles);
 
@@ -115,14 +115,16 @@ function Action() {
                             </div>
                         </HeadlessTippy>
                     </div>
-                    <div className={cx('my-story')}>
-                        <img className={cx('bookmark-icon')} src={Bookmark} alt="bookmark" />
-                    </div>
+
+                    {/* Mystory-Modal */}
+                    <ModalMode />
+
                     <div>
                         <HeadlessTippy
                             interactive={true}
                             visible={visible}
                             placement="bottom-end"
+                            onClickOutside={() => setVisible(false)}
                             render={(attrs) => (
                                 <div className={cx('box-option')} tabIndex="-1" {...attrs}>
                                     <PopperWrapper>
@@ -183,9 +185,9 @@ function Action() {
                 </div>
             ) : (
                 <div className={cx('action')}>
-                    <div className={cx('my-story')}>
-                        <img className={cx('bookmark-icon')} src={Bookmark} alt="bookmark" />
-                    </div>
+                    {/* Mystory Modal */}
+                    <ModalMode />
+
                     <Button
                         to={config.routes.signin}
                         className={cx('sign-in')}

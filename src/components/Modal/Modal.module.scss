@@ -1,0 +1,43 @@
+.my-story {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    padding: 5px;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.bookmark-icon {
+    width: 3.7rem;
+    height: 2.7rem;
+}
+
+.Modal {
+    position: absolute;
+    width: 35vw;
+    height: 100vh;
+    z-index: 10;
+    top: 5px;
+    left: auto;
+    right: 0;
+    bottom: 5px;
+    background-color: papayawhip;
+}
+
+.modal-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .modal-header {
+        padding: 16px;
+
+        h3 {
+            font-size: 2rem;
+        }
+    }
+}

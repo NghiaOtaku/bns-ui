@@ -9,8 +9,7 @@ import Button from '~/components/Button';
 
 const cx = classNames.bind(styles);
 
-function NewestStory({ title, marginbottom, chuong = false, ...props }) {
-    console.log(chuong);
+function NewestStory({ title, marginbottom, view = false, chuong = false, ...props }) {
     let url = props.api;
     const [story, setStory] = useState([]);
 
@@ -47,7 +46,11 @@ function NewestStory({ title, marginbottom, chuong = false, ...props }) {
                                         <span className={cx('prefix-list-name')}>[{data.source.name}]</span>
                                         <p>{data.name}</p>
                                     </Button>
-                                    <Button to={`tac-gia/${data.author.slug}`} className={cx('list-author')}>
+                                    <Button
+                                        data={item}
+                                        to={`tac-gia/${data.author.slug}`}
+                                        className={cx('list-author')}
+                                    >
                                         <p>{data.author.name}</p>
                                     </Button>
                                 </div>
@@ -59,6 +62,13 @@ function NewestStory({ title, marginbottom, chuong = false, ...props }) {
                                         >
                                             <p>{item?.chapter.name}</p>
                                         </Button>
+                                    </div>
+                                ) : (
+                                    <></>
+                                )}
+                                {view ? (
+                                    <div className={cx('cate-items')}>
+                                        <p>views: {item?.view}</p>
                                     </div>
                                 ) : (
                                     <></>

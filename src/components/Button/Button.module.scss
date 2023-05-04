@@ -26,6 +26,10 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .prefix {
@@ -58,24 +62,37 @@
     }
 }
 
-.primary {
-    color: var(--white);
-    background-color: var(--primary);
-    border-color: var(--primary);
+.type {
+    display: block;
+    padding: 3px 15px;
+    text-align: center;
+    font-size: 1.2rem;
+    border-radius: 14px;
+    border: 1px solid;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin: 0 8px 8px 0;
+    border-color: rgb(68, 151, 248);
 
     &:hover {
-        border-color: var(--primary);
-        background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)), #fe2c55;
+        color: var(--main_color);
     }
 }
 
-.outline {
-    color: var(--primary);
-    border-color: currentColor;
+.tag {
+    display: block;
+    padding: 3px 15px;
+    text-align: center;
+    font-size: 1.2rem;
+    border-radius: 14px;
+    border: 1px solid;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin: 0 8px 8px 0;
+    border-color: green;
 
     &:hover {
-        border-color: currentColor;
-        background-color: rgba(254, 44, 85, 0.06);
+        color: var(--main_color);
     }
 }
 

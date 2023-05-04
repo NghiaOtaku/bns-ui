@@ -64,22 +64,6 @@
     color: var(--main_color);
 }
 
-.my-story {
-    display: flex;
-    align-items: center;
-    margin-left: 20px;
-    padding: 5px;
-
-    &:hover {
-        cursor: pointer;
-    }
-}
-
-.bookmark-icon {
-    width: 3.7rem;
-    height: 2.7rem;
-}
-
 .box-option {
     width: 400px;
 }

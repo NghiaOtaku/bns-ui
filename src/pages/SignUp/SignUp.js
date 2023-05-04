@@ -20,6 +20,7 @@ function SignUp() {
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 console.log(userCredential);
+                alert('Sign up successfully');
             })
             .catch((error) => {
                 console.log(error);

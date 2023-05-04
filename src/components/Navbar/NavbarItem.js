@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import styles from './NavbarItem.module.scss';
+import styles from './Navbar.module.scss';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 

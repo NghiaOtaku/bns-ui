@@ -35,8 +35,8 @@ function Info() {
             <div className={cx('policy')}>
                 <ul className={cx('policy-link')}>
                     {POLICY_LINK.map((item, index) => (
-                        <Button to={replaceStr(item.name)}>
-                            <li key={index}>{item.name}</li>
+                        <Button key={index} to={replaceStr(item.name)}>
+                            <li>{item.name}</li>
                         </Button>
                     ))}
                 </ul>

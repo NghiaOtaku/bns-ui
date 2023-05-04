@@ -4,13 +4,13 @@
 }
 
 .wrapper {
+    z-index: 5;
     --icon-width: 2.4rem;
     --icon-height: 2.4rem;
 
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 10;
     width: 100%;
     height: var(--default-layout-header-height);
     background-color: #f8f9fa;
@@ -61,31 +61,3 @@
 //     padding: 4px 8px;
 //     cursor: pointer;
 // }
-
-.nav-bar {
-    margin-top: var(--default-layout-header-height);
-    width: 100vw;
-    height: var(--default-navbar-header-height);
-    background-color: #343a40;
-    display: flex;
-    justify-content: center;
-}
-
-.inner-navbar {
-    width: var(--default-layout-width);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    color: white;
-    font-size: 1.4rem;
-}
-
-.navbar-public {
-    display: flex;
-    flex-direction: row;
-}
-
-.navbar-user {
-    display: flex;
-    flex-direction: row;
-}

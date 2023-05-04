@@ -6,7 +6,7 @@ import 'slick-carousel/slick/slick-theme.css';
 
 import classNames from 'classnames/bind';
 import styles from './EditorChoice.module.scss';
-import Image from '~/components/Image/Image';
+import Image from '~/components/Image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import Button from '~/components/Button';
