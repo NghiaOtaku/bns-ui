@@ -7,6 +7,7 @@ import { faLongArrowAltRight, faQuoteLeft } from '@fortawesome/free-solid-svg-ic
 
 //local Code
 import Image from '~/components/Image/Image';
+import Button from '~/components/Button';
 
 // {/* Link Top nguyet phieu */ }
 // {/* https://api.bachngocsach.vip/api/recommended-stories?per_page=12&option=landing */}
@@ -46,7 +47,14 @@ function Story() {
                             </button>
                             <div className={cx('story-intro')}>
                                 <h4>
-                                    <button className={cx('title-text')}>{item.name}</button>
+                                    <Button
+                                        dataStory={item}
+                                        to={`truyen/${item.slug}`}
+                                        prefix
+                                        className={cx('title-text')}
+                                    >
+                                        {item.name}
+                                    </Button>
                                 </h4>
                                 <div className={cx('author-source')}>
                                     <button className={cx('author')}>{item.author.name}</button>

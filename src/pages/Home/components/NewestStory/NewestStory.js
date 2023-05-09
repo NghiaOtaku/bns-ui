@@ -11,19 +11,29 @@ const cx = classNames.bind(styles);
 
 function NewestStory({ title, marginbottom, view = false, chuong = false, ...props }) {
     let url = props.api;
+    // console.log(props?.idAuthor, 'idAuthor');
     const [story, setStory] = useState([]);
+    // const [story1, setStory1] = useState([]);
 
     const fetchApi = async () => {
         let json = await axios.get(url);
         return json.data;
     };
 
+    // useEffect(() => {
+    //     fetch(`https://api.bachngocsach.vip/api/author/${props?.idAuthor}/story`)
+    //         .then((res) => res.json())
+    //         .then((res) => setStory1(res));
+    // }, []);
+
+    // console.log('story1', story1.data);
+
     useEffect(() => {
         fetchApi()
             .then((results) => {
                 setStory(results.data);
             })
-            .catch((err) => console.log(err));
+            .catch((err) => console.log(err, 'error'));
     }, []);
 
     return (
@@ -38,11 +48,16 @@ function NewestStory({ title, marginbottom, view = false, chuong = false, ...pro
                 <ul className={cx('heading-list')}>
                     {story.map((item, index) => {
                         let data = item.story || item || {};
-                        console.log(item);
+                        console.log(item, 'item');
                         return (
                             <li key={index}>
                                 <div className={cx('list-group-item')}>
-                                    <Button to={`truyen/${data.slug}`} prefix className={cx('list-name')}>
+                                    <Button
+                                        dataStory={item}
+                                        to={`truyen/${data.slug}`}
+                                        prefix
+                                        className={cx('list-name')}
+                                    >
                                         <span className={cx('prefix-list-name')}>[{data.source.name}]</span>
                                         <p>{data.name}</p>
                                     </Button>

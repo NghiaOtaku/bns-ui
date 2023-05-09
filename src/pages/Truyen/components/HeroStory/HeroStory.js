@@ -8,38 +8,34 @@ import { faBook, faBookOpenReader, faHandHoldingHeart, faList, faStar } from '@f
 
 const cx = classNames.bind(styles);
 
-function HeroStory() {
+function HeroStory({ dataStory }) {
+    // console.log(dataStory, 'dataStory');
+    let data = dataStory || [];
+
     return (
         <div className={cx('hero-of-story')}>
             <div className={cx('img-story')}>
-                <Image
-                    className={cx('custom-zoom-img')}
-                    src={
-                        'https://api.bachngocsach.vip/storage/story_img/small_7jl1PhIIfUI8iZm9yFsmH1AgDXCU9iDdQ2qyL3sq.png'
-                    }
-                    alt="Truyen"
-                />
+                <Image className={cx('custom-zoom-img')} src={data.cover} alt="Truyen" />
             </div>
             <div className={cx('info-story')}>
                 <div className={cx('info-story-title')}>
                     <h1>
-                        <span style={{ color: 'blue' }}>[Dich]</span> Tro thanh nha gia kim trong the gioi Harry Poter
+                        <span style={{ color: 'blue' }}>[{data.source?.name}] </span>
+                        {data.name}
                     </h1>
                 </div>
                 <div className={cx('info-story-author')}>
                     <Button>
                         <h3>
                             Tac gia:
-                            <span> Con meo luoi tren ban phim</span>
+                            <span> {data.author?.name}</span>
                         </h3>
                     </Button>
                 </div>
                 <div className={cx('info-story-contributor')}>
                     <h3>
                         {'Contributor: '}
-                        <Button>
-                            <span> Chu tieu xam long</span>
-                        </Button>
+                        <Button>{<span> {data.contributors?.map((x) => x.username)}</span>}</Button>
                     </h3>
                 </div>
                 <div className={cx('info-story-status')}>
@@ -55,9 +51,16 @@ function HeroStory() {
                     <Button tag>Doc quen BNS</Button>
                 </div>
                 <div className={cx('info-story-detail')}>
-                    <span className={cx('info-story-detail-chu')}>1000000 Chu</span>
-                    <span className={cx('info-story-detail-chuong')}>1000000 Chu</span>
-                    <span className={cx('info-story-detail-doc')}>1000000 Chu</span>
+                    <span className={cx('info-story-detail-chu')}>
+                        {`${data.total_words}`}
+                        <small> Chu</small>
+                    </span>
+                    <span className={cx('info-story-detail-chuong')}>
+                        {`${data.chapters_count}`} <small> Chuong</small>
+                    </span>
+                    <span className={cx('info-story-detail-doc')}>
+                        {`${data.view}`} <small> Doc</small>
+                    </span>
                 </div>
                 <div className={cx('info-story-interactive')}>
                     <div className={cx('info-story-docluutruyen')}>
