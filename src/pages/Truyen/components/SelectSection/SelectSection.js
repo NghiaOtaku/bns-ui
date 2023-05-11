@@ -1,19 +1,21 @@
 import styles from './SelectSection.module.scss';
 import classNames from 'classnames/bind';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 import Rating from './Rating';
+import ListChapter from '../ListChapter/';
 
 const cx = classNames.bind(styles);
 
-function SelectSection({ data }) {
+function SelectSection({ data, idStory }) {
     const [tabType, setTabType] = useState('introduce');
     // const [vote, setVote] = useState(false);
     // const [listChapters, setListChapters] = useState(false);
+    const divRef = useRef();
 
     return (
         <>
-            <div className={cx('select-section')}>
+            <div ref={divRef} className={cx('select-section')}>
                 <div
                     className={cx('select-section-item', tabType === 'introduce' ? 'current' : '')}
                     onClick={() => setTabType('introduce')}
@@ -40,13 +42,7 @@ function SelectSection({ data }) {
                 </div>
             )}
             {tabType === 'vote' && <Rating data={data} />}
-            {tabType === 'listChapter' && (
-                <div>
-                    <ul>
-                        <li>Danh sach chuong</li>
-                    </ul>
-                </div>
-            )}
+            {tabType === 'listChapter' && <ListChapter data={data} idStory={idStory} divRef={divRef} />}
         </>
     );
 }

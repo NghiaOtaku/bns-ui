@@ -36,7 +36,7 @@ function Rating({ data }) {
                 }
             })
             .catch((err) => console.log(err));
-    }, []);
+    }, [data]);
 
     // console.log('User Rate', userRate);
 
@@ -65,7 +65,7 @@ function Rating({ data }) {
                     next={fetchDataUserRate}
                     hasMore={hasMore}
                     loader={<h4>Loading...</h4>}
-                    height={500}
+                    max-height={500}
                     endMessage={
                         <p style={{ textAlign: 'center' }}>
                             <b>Yay! You have seen it all</b>

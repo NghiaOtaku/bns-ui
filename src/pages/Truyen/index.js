@@ -1,13 +1,14 @@
 import styles from './Truyen.module.scss';
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 import HeroStory from './components/HeroStory';
 import Button from '~/components/Button/Button';
 import NewestStory from '../Home/components/NewestStory';
 import SelectSection from './components/SelectSection';
+import Comment from '~/components/Comment';
 
 const cx = classNames.bind(styles);
 
@@ -17,7 +18,6 @@ function Truyen() {
     let data = location.state;
     let idStory = data.story_id || data.id || '';
     let idAuthor = data.story?.author.id || data?.author.id || '';
-    console.log('data', data);
     const [story, setStory] = useState([]);
 
     const fetchApi = async () => {
@@ -28,10 +28,13 @@ function Truyen() {
     useEffect(() => {
         fetchApi()
             .then((results) => {
+                // window.location.reload();
                 setStory(results);
             })
             .catch((err) => console.log(err));
-    }, []);
+    }, [data]);
+
+    console.log('data', data);
 
     return (
         <div className={cx('wrapper')}>
@@ -89,7 +92,8 @@ function Truyen() {
                             </tbody>
                         </table>
                     </div>
-                    <SelectSection data={story} />
+                    <SelectSection data={story} idStory={idStory} />
+                    <Comment data={data} idStory={idStory} />
                 </div>
                 <div className={cx('same-author')}>
                     <NewestStory

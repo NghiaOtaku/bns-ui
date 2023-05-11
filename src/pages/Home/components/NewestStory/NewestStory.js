@@ -54,7 +54,7 @@ function NewestStory({ title, marginbottom, view = false, chuong = false, ...pro
                                 <div className={cx('list-group-item')}>
                                     <Button
                                         dataStory={item}
-                                        to={`truyen/${data.slug}`}
+                                        to={`/truyen/${data.slug}`}
                                         prefix
                                         className={cx('list-name')}
                                     >
