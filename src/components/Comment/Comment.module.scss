@@ -5,7 +5,7 @@
         background-color: var(--bg_color);
         padding: 5px;
         border-radius: 10px;
-        min-height: 700px;
+        height: auto;
     }
 }
 
@@ -72,6 +72,12 @@
         &:hover {
             // cursor: pointer;
         }
+    }
+}
+
+.toggle-action {
+    &:hover {
+        cursor: pointer;
     }
 }
 
@@ -201,5 +207,52 @@ p {
                 border-color: var(--main_color_hover);
             }
         }
+    }
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+}
+
+.page-item {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    line-height: 24px;
+    border: 1px solid #bebebe;
+
+    &:hover {
+        cursor: pointer;
+        background-color: var(--main_color);
+        color: #fff !important;
+
+        a {
+            color: white;
+        }
+    }
+}
+
+.page-link {
+    padding: 6px 13px;
+}
+
+.active {
+    background-color: var(--main_color_hover);
+    border-color: var(--main_color_hover);
+
+    a {
+        color: white;
+    }
+}
+
+.rate-body-content {
+    display: block;
+    width: 100%;
+
+    .show-more-less-btn {
+        font-weight: 500;
     }
 }

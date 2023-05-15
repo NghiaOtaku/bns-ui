@@ -3,6 +3,10 @@ import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import updateLocale from 'dayjs/plugin/updateLocale';
+import vi from 'dayjs/locale/vi';
 
 import HeroStory from './components/HeroStory';
 import Button from '~/components/Button/Button';
@@ -12,6 +16,10 @@ import Comment from '~/components/Comment';
 
 const cx = classNames.bind(styles);
 
+dayjs.extend(relativeTime);
+dayjs.extend(updateLocale);
+dayjs.locale(vi);
+
 function Truyen() {
     const location = useLocation();
 
@@ -19,14 +27,19 @@ function Truyen() {
     let idStory = data.story_id || data.id || '';
     let idAuthor = data.story?.author.id || data?.author.id || '';
     const [story, setStory] = useState([]);
+    const [newChapter, setNewChapter] = useState([]);
 
-    const fetchApi = async () => {
-        let json = await axios.get(`https://api.bachngocsach.vip/api/story/${idStory}`);
+    const fromNow = (x) => {
+        return dayjs(x).fromNow();
+    };
+
+    const fetchApi = async (url) => {
+        let json = await axios.get(url);
         return json.data;
     };
 
     useEffect(() => {
-        fetchApi()
+        fetchApi(`https://api.bachngocsach.vip/api/story/${idStory}`)
             .then((results) => {
                 // window.location.reload();
                 setStory(results);
@@ -34,7 +47,16 @@ function Truyen() {
             .catch((err) => console.log(err));
     }, [data]);
 
-    console.log('data', data);
+    useEffect(() => {
+        fetchApi(`https://api.bachngocsach.vip/api/story/${idStory}/5-chapters-newest?page=1`)
+            .then((results) => {
+                // window.location.reload();
+                setNewChapter(results);
+            })
+            .catch((err) => console.log(err));
+    }, [data]);
+
+    console.log('new chapter', newChapter);
 
     return (
         <div className={cx('wrapper')}>
@@ -59,36 +81,18 @@ function Truyen() {
                                 </tr>
                             </thead>
                             <tbody>
-                                <Button>
-                                    <td className={cx('width-name', 'chapter-name')}>
-                                        Chương 1440: Tiệm thuốc nhỏ ấm áp (4)
-                                    </td>
-                                    <td className={cx('width-time')}>1 ngày</td>
-                                </Button>
-                                <Button>
-                                    <td className={cx('width-name', 'chapter-name')}>
-                                        Chương 1440: Tiệm thuốc nhỏ ấm áp (4)
-                                    </td>
-                                    <td className={cx('width-time')}>1 ngày</td>
-                                </Button>
-                                <Button>
-                                    <td className={cx('width-name', 'chapter-name')}>
-                                        Chương 1440: Tiệm thuốc nhỏ ấm áp (4)
-                                    </td>
-                                    <td className={cx('width-time')}>1 ngày</td>
-                                </Button>
-                                <Button>
-                                    <td className={cx('width-name', 'chapter-name')}>
-                                        Chương 1440: Tiệm thuốc nhỏ ấm áp (4)
-                                    </td>
-                                    <td className={cx('width-time')}>1 ngày</td>
-                                </Button>
-                                <Button>
-                                    <td className={cx('width-name', 'chapter-name')}>
-                                        Chương 1440: Tiệm thuốc nhỏ ấm áp (4)
-                                    </td>
-                                    <td className={cx('width-time')}>1 ngày</td>
-                                </Button>
+                                {newChapter.data?.map((item, index) => {
+                                    return (
+                                        <Button
+                                            key={index}
+                                            to={`/dich/${data.slug}/${item.story_id}/${item.slug}/${item.id}`}
+                                            className={cx('table-row')}
+                                        >
+                                            <td className={cx('width-name', 'chapter-name')}>{item.name}</td>
+                                            <td className={cx('width-time')}>{fromNow(item.publish_at)}</td>
+                                        </Button>
+                                    );
+                                })}
                             </tbody>
                         </table>
                     </div>

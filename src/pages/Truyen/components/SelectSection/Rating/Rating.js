@@ -65,7 +65,8 @@ function Rating({ data }) {
                     next={fetchDataUserRate}
                     hasMore={hasMore}
                     loader={<h4>Loading...</h4>}
-                    max-height={500}
+                    className={cx('infinite-scroll')}
+                    height={'auto'}
                     endMessage={
                         <p style={{ textAlign: 'center' }}>
                             <b>Yay! You have seen it all</b>

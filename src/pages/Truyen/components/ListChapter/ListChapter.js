@@ -4,12 +4,28 @@ import classNames from 'classnames/bind';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect } from 'react';
 import ReactPaginate from 'react-paginate';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import updateLocale from 'dayjs/plugin/updateLocale';
+import vi from 'dayjs/locale/vi';
 
 import Button from '~/components/Button';
 
 const cx = classNames.bind(styles);
 
+dayjs.extend(relativeTime);
+dayjs.extend(updateLocale);
+dayjs.locale(vi);
+
+console.log(dayjs.locale());
+
 function ListChapter({ data, idStory, divRef }) {
+    console.log('formNow', dayjs('2023-01-01').fromNow());
+    const fromNow = (x) => {
+        let time = x;
+        return dayjs(time).fromNow();
+    };
+
     const [chapter, setChapter] = useState([]);
     console.log('divRef', divRef);
     const scrollToElement = () => divRef.current.scrollIntoView();
@@ -77,6 +93,7 @@ function ListChapter({ data, idStory, divRef }) {
                 </thead>
                 <tbody>
                     {chapter.data?.map((item, index) => {
+                        // setTime(fromNow(item.publish_at));
                         return (
                             <Button
                                 key={index}
@@ -85,7 +102,7 @@ function ListChapter({ data, idStory, divRef }) {
                             >
                                 <td className={cx('text-center', 'width-stt')}>{item.chapter_number}</td>
                                 <td className={cx('width-name')}>{item.name}</td>
-                                <td className={cx('width-time')}>1 nam</td>
+                                <td className={cx('width-time')}>{fromNow(item.publish_at)}</td>
                             </Button>
                         );
                     })}
