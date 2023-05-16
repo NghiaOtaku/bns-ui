@@ -10,12 +10,13 @@ import Button from '~/components/Button';
 const cx = classNames.bind(styles);
 
 function NewestStory({ title, marginbottom, view = false, chuong = false, ...props }) {
-    let url = props.api;
     // console.log(props?.idAuthor, 'idAuthor');
     const [story, setStory] = useState([]);
     // const [story1, setStory1] = useState([]);
+    let url = props.api;
 
     const fetchApi = async () => {
+        console.log('url', url);
         let json = await axios.get(url);
         return json.data;
     };
@@ -34,7 +35,7 @@ function NewestStory({ title, marginbottom, view = false, chuong = false, ...pro
                 setStory(results.data);
             })
             .catch((err) => console.log(err, 'error'));
-    }, []);
+    }, [url]);
 
     return (
         <div style={{ marginBottom: marginbottom }} className={cx('newestStories')}>
@@ -63,7 +64,7 @@ function NewestStory({ title, marginbottom, view = false, chuong = false, ...pro
                                     </Button>
                                     <Button
                                         data={item}
-                                        to={`tac-gia/${data.author.slug}`}
+                                        to={`/tac-gia/${data.author.slug}`}
                                         className={cx('list-author')}
                                     >
                                         <p>{data.author.name}</p>

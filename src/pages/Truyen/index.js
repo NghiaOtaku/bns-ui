@@ -24,8 +24,9 @@ function Truyen() {
     const location = useLocation();
 
     let data = location.state;
-    let idStory = data.story_id || data.id || '';
-    let idAuthor = data.story?.author.id || data?.author.id || '';
+
+    let idStory = data?.story_id || data?.id || '';
+    let idAuthor = data.story?.author?.id || data?.author?.id || '';
     const [story, setStory] = useState([]);
     const [newChapter, setNewChapter] = useState([]);
 
@@ -56,7 +57,11 @@ function Truyen() {
             .catch((err) => console.log(err));
     }, [data]);
 
-    console.log('new chapter', newChapter);
+    console.log('story', story);
+
+    let idAuthor2 = idAuthor || story.author_id;
+
+    console.log('idAuthor2', idAuthor2);
 
     return (
         <div className={cx('wrapper')}>
@@ -102,7 +107,7 @@ function Truyen() {
                 <div className={cx('same-author')}>
                     <NewestStory
                         title="Truyen cung tac gia"
-                        api={`https://api.bachngocsach.vip/api/author/${idAuthor}/story`}
+                        api={`https://api.bachngocsach.vip/api/author/${idAuthor2}/story`}
                         view
                     />
                 </div>

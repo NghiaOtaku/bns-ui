@@ -27,7 +27,7 @@ function ListChapter({ data, idStory, divRef }) {
     };
 
     const [chapter, setChapter] = useState([]);
-    console.log('divRef', divRef);
+    // console.log('divRef', divRef);
     const scrollToElement = () => divRef.current.scrollIntoView();
 
     useEffect(() => {
@@ -37,7 +37,7 @@ function ListChapter({ data, idStory, divRef }) {
             .then((res) => setChapter(res));
     }, [data]);
 
-    console.log('chapter', chapter);
+    // console.log('chapter', chapter);
 
     const fetchChapter = async (page) => {
         const res = await fetch(
@@ -49,7 +49,7 @@ function ListChapter({ data, idStory, divRef }) {
 
     const handlePageClick = async (data) => {
         scrollToElement();
-        console.log(data.selected);
+        // console.log(data.selected);
 
         let page = data.selected + 1;
 

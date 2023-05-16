@@ -31,6 +31,8 @@ function EditorChoice() {
             .catch((err) => console.log(err));
     }, []);
 
+    console.log('story', story);
+
     const settings = {
         infinite: true,
         slidesToShow: 8,
@@ -56,7 +58,9 @@ function EditorChoice() {
                         return (
                             <div key={index} className={cx('card-story')}>
                                 <div className={cx('cover')}>
-                                    <Image src={item.cover} className={cx('custom-zoom-img')} alt="Anh truyen" />
+                                    <Button dataStory={item} to={`truyen/${item.slug}`}>
+                                        <Image src={item.cover} className={cx('custom-zoom-img')} alt="Anh truyen" />
+                                    </Button>
                                 </div>
                                 <h4>{item.name}</h4>
                                 <p>{item.author.name}</p>

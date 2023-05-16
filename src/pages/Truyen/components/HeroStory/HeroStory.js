@@ -14,7 +14,7 @@ import { faPlusSquare } from '@fortawesome/free-regular-svg-icons';
 const cx = classNames.bind(styles);
 
 function HeroStory({ dataStory }) {
-    // console.log(dataStory, 'dataStory');
+    console.log(dataStory, 'dataStory');
     const convertTime = (x) => dayjs(x).format('DD-MM-YYYY HH:mm');
 
     let data = dataStory || [];

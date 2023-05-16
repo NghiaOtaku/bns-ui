@@ -5,6 +5,7 @@ import classNames from 'classnames/bind';
 import styles from './HomepageIntro.module.scss';
 import Category from './components/Category';
 import Info from './components/Info';
+import Button from '~/components/Button';
 
 const cx = classNames.bind(styles);
 
@@ -47,7 +48,8 @@ function HomepageIntro() {
     //     return () => clearInterval(handleTest);
     // }, [story]);
 
-    // console.log(image);
+    console.log('story', story);
+    console.log('silde', slide);
 
     return (
         <div className={cx('wrapper')}>
@@ -56,7 +58,9 @@ function HomepageIntro() {
             </div>
             <div className={cx('intro-slides')}>
                 <div className={cx('img-slides')}>
-                    <img className={cx('img-tag-slides')} src={image || story[0]?.image} alt={`Anh truyen`} />
+                    <Button dataStory={story[slide]} to={`truyen/${story[slide]?.story_slug}`}>
+                        <img className={cx('img-tag-slides')} src={image || story[0]?.image} alt={`Anh truyen`} />
+                    </Button>
                 </div>
                 <div className={cx('text-slides')}>
                     {story.map((item, index) => {
