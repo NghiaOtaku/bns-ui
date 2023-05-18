@@ -19,7 +19,7 @@ dayjs.locale(vi);
 
 console.log(dayjs.locale());
 
-function ListChapter({ data, idStory, divRef }) {
+function ListChapter({ page = 1, data = {}, idStory, divRef = {}, onClick = () => {} }) {
     console.log('formNow', dayjs('2023-01-01').fromNow());
     const fromNow = (x) => {
         let time = x;
@@ -28,10 +28,10 @@ function ListChapter({ data, idStory, divRef }) {
 
     const [chapter, setChapter] = useState([]);
     // console.log('divRef', divRef);
-    const scrollToElement = () => divRef.current.scrollIntoView();
+    const scrollToElement = () => divRef.current?.scrollIntoView();
 
     useEffect(() => {
-        fetch(`https://api.bachngocsach.vip/api/story/${idStory}/chapter?per_page=50&page=1&order_by=asc`)
+        fetch(`https://api.bachngocsach.vip/api/story/${idStory}/chapter?per_page=50&page=${page}&order_by=asc`)
             .then((res) => res.json())
             .then((res) => res.chapters)
             .then((res) => setChapter(res));
@@ -49,7 +49,7 @@ function ListChapter({ data, idStory, divRef }) {
 
     const handlePageClick = async (data) => {
         scrollToElement();
-        // console.log(data.selected);
+        console.log('dataselected', data.selected);
 
         let page = data.selected + 1;
 
@@ -96,8 +96,10 @@ function ListChapter({ data, idStory, divRef }) {
                         // setTime(fromNow(item.publish_at));
                         return (
                             <Button
+                                onClick={onClick}
                                 key={index}
-                                to={`/dich/${data.slug}/${item.story_id}/${item.slug}/${item.id}`}
+                                dataStory={item}
+                                to={`/dich/${item.slug}/${item.story_id}/${item.slug}/${item.id}`}
                                 className={cx('table-row')}
                             >
                                 <td className={cx('text-center', 'width-stt')}>{item.chapter_number}</td>
@@ -114,6 +116,7 @@ function ListChapter({ data, idStory, divRef }) {
                     nextLabel={'next'}
                     breakLabel={'...'}
                     pageCount={chapter.last_page}
+                    initialPage={page - 1}
                     marginPagesDisplayed={1}
                     pageRangeDisplayed={3}
                     onPageChange={handlePageClick}

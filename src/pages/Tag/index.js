@@ -14,22 +14,38 @@ function Tag() {
     const param = useParams();
     const divRef = useRef();
     const scrollToElement = () => divRef.current.scrollIntoView();
+    let tagName = '';
+
+    // console.log('location', location);
+    // console.log('param', param);
+
+    switch (param.tag) {
+        case 'tag':
+            tagName = 'tag';
+            break;
+        case 'the-loai':
+            tagName = 'category';
+            break;
+        default:
+    }
 
     const [cardStory, setCardStory] = useState([]);
     const [tag, setTag] = useState({});
 
     const fetchApi = async () => {
-        let json = await axios.get(`https://api.bachngocsach.vip/api/tag/${param.id}/story?per_page=10&page=1`);
+        let json = await axios.get(`https://api.bachngocsach.vip/api/${tagName}/${param.id}/story?per_page=10&page=1`);
         return json.data;
     };
 
     const fetchApiTag = async () => {
-        let json = await axios.get(`https://api.bachngocsach.vip/api/tag/${param.id}`);
+        let json = await axios.get(`https://api.bachngocsach.vip/api/${tagName}/${param.id}`);
         return json;
     };
 
     const fetchCardStory = async (page) => {
-        const res = await fetch(`https://api.bachngocsach.vip/api/tag/${param.id}/story?per_page=10&page=${page}`);
+        const res = await fetch(
+            `https://api.bachngocsach.vip/api/${tagName}/${param.id}/story?per_page=10&page=${page}`,
+        );
         const data = await res.json();
         // console.log('data', data);
         return data;
@@ -63,7 +79,7 @@ function Tag() {
             .catch((err) => console.log(err));
     }, []);
 
-    // console.log('tag', tag);
+    console.log('cardStory', cardStory);
 
     return (
         <div className={cx('wrapper')}>

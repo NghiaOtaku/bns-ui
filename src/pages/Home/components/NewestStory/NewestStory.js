@@ -73,7 +73,8 @@ function NewestStory({ title, marginbottom, view = false, chuong = false, ...pro
                                 {chuong ? (
                                     <div className={cx('cate-items')}>
                                         <Button
-                                            to={`${data.source.slug}/${data.slug}/${data.id}/${item?.chapter.slug}`}
+                                            dataStory={item.chapter}
+                                            to={`${data.source.slug}/${data.slug}/${data.id}/${item?.chapter.slug}/${item.chapter.id}`}
                                             className={cx('cate-items-btn')}
                                         >
                                             <p>{item?.chapter.name}</p>

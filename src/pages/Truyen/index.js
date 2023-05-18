@@ -89,6 +89,7 @@ function Truyen() {
                                 {newChapter.data?.map((item, index) => {
                                     return (
                                         <Button
+                                            dataStory={item}
                                             key={index}
                                             to={`/dich/${data.slug}/${item.story_id}/${item.slug}/${item.id}`}
                                             className={cx('table-row')}

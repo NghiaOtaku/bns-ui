@@ -14,7 +14,8 @@ import OnceComment from './OnceComment';
 
 const cx = classNames.bind(styles);
 
-function Comment({ data, idStory }) {
+function Comment({ data = {}, idStory }) {
+    console.log('data', data);
     const convertTime = (x) => dayjs(x).format('DD-MM-YYYY HH:mm:ss');
     const [toggleComment, setToggleComment] = useState(true);
     const divRef = useRef();
