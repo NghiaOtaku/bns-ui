@@ -169,7 +169,7 @@ function ReadFee({
                     </Button>
                     <div>
                         <Button
-                            dataStory={listChapter[stt - 1]}
+                            dataStory={listChapter[stt]}
                             to={`/dich/${story.slug}/${story.id}/${slugNextChapters}/${idNextChapters}`}
                             className={cx('btn-breadcrumbs', idNextChapters ? '' : 'disabled')}
                         >
