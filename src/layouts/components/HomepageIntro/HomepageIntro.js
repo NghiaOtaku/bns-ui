@@ -33,20 +33,20 @@ function HomepageIntro() {
     // setImage(story[0].image);
     // console.log(story[0].image);
 
-    // useEffect(() => {
-    //     const handleTest = setInterval(() => {
-    //         setSlide((prev) => {
-    //             if (prev < 3) {
-    //                 setImage(story[prev + 1].image);
-    //                 return prev + 1;
-    //             } else {
-    //                 setImage(story[0].image);
-    //                 return (prev = 0);
-    //             }
-    //         });
-    //     }, 3000);
-    //     return () => clearInterval(handleTest);
-    // }, [story]);
+    useEffect(() => {
+        const handleTest = setInterval(() => {
+            setSlide((prev) => {
+                if (prev < 3) {
+                    setImage(story[prev + 1].image);
+                    return prev + 1;
+                } else {
+                    setImage(story[0].image);
+                    return (prev = 0);
+                }
+            });
+        }, 3000);
+        return () => clearInterval(handleTest);
+    }, [story]);
 
     console.log('story', story);
     console.log('silde', slide);

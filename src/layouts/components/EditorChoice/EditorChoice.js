@@ -37,7 +37,7 @@ function EditorChoice() {
         infinite: true,
         slidesToShow: 8,
         slidesToScroll: 1,
-        autoplay: false,
+        autoplay: true, //or false to not autoplay
         speed: 500,
         autoplaySpeed: 3000,
         cssEase: 'ease-in',
