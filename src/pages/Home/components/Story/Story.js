@@ -3,7 +3,7 @@ import axios from 'axios';
 import classNames from 'classnames/bind';
 import styles from './Story.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLongArrowAltRight, faQuoteLeft } from '@fortawesome/free-solid-svg-icons';
+import { faLongArrowAltRight } from '@fortawesome/free-solid-svg-icons';
 
 //local Code
 import CardStory from '~/components/CardStory';

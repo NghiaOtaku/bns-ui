@@ -21,10 +21,10 @@ function CardStory({ item }) {
                             {item.name}
                         </Button>
                     </h4>
-                    <div className={cx('author-source')}>
-                        <button className={cx('author')}>{item.author.name}</button>
-                        <button className={cx('badge-dich')}>{item.source.slug}</button>
-                    </div>
+                    {/* <div className={cx('author-source')}>
+                        <button className={cx('author')}>{item.author?.name}</button>
+                        <button className={cx('badge-dich')}>{item.source?.slug}</button>
+                    </div> */}
                     <div className={cx('story-info')}>
                         <span className={cx('text-danger')}>
                             {item.total_words}
