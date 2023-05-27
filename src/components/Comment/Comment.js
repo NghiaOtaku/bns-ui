@@ -15,9 +15,8 @@ import OnceComment from './OnceComment';
 const cx = classNames.bind(styles);
 
 function Comment({ data = {}, idStory }) {
-    console.log('data', data);
+    console.log('idStory', idStory);
     const convertTime = (x) => dayjs(x).format('DD-MM-YYYY HH:mm:ss');
-    const [toggleComment, setToggleComment] = useState(true);
     const divRef = useRef();
 
     const [comments, setComments] = useState([]);
@@ -63,7 +62,7 @@ function Comment({ data = {}, idStory }) {
     return (
         <div ref={divRef} className={cx('wrapper')}>
             <div className={cx('container')}>
-                <h4 style={{ fontSize: '2.4rem' }}>Binh luan ({comments?.total})</h4>
+                <h4 style={{ fontSize: '2.4rem' }}>Binh luan ({comments?.total_comments})</h4>
                 <div className={cx('user-form')}>
                     <div className={cx('frame-avatar-user-comment')}>
                         <img src={images.avatarDefault} alt="" />
@@ -78,7 +77,7 @@ function Comment({ data = {}, idStory }) {
                     </div>
                 </div>
                 {/* List Comment */}
-                {comments.data?.map((item, index) => {
+                {comments.comments?.data?.map((item, index) => {
                     // console.log('item comments', item);
                     return (
                         <div key={index} className={cx('comments-item')}>
@@ -169,13 +168,12 @@ function Comment({ data = {}, idStory }) {
                     );
                 })}
             </div>
-            {console.log(comments.total)}
-            {comments.total !== 0 ? (
+            {comments.total_comments !== 0 ? (
                 <ReactPaginate
                     previousLabel={'previous'}
                     nextLabel={'next'}
                     breakLabel={'...'}
-                    pageCount={comments.last_page}
+                    pageCount={comments.comments.last_page}
                     marginPagesDisplayed={1}
                     pageRangeDisplayed={3}
                     onPageChange={handlePageClick}
