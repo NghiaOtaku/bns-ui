@@ -26,10 +26,10 @@ function CardStory({ item }) {
                         <button className={cx('badge-dich')}>{item.source?.slug}</button>
                     </div> */}
                     <div className={cx('story-info')}>
-                        <span className={cx('text-danger')}>
+                        {/* <span className={cx('text-danger')}>
                             {item.total_words}
                             <small> Chu</small>
-                        </span>
+                        </span> */}
                         <span className={cx('text-success')}>
                             {item.chapters_count}
                             <small> Chuong</small>
