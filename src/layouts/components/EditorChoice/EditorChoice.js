@@ -19,19 +19,20 @@ function EditorChoice() {
     const [story, setStory] = useState([]);
 
     const fetchApi = async () => {
-        let json = await axios.get('https://api.bachngocsach.vip/api/story-editor-choice?per_page=20');
+        // let json = await axios.get('http://localhost:3001/edittor-choice');
+        let json = await axios.get('https://ngocsach.com/api/recommended-stories?per_page=12&option=landing');
         return json.data;
     };
 
     useEffect(() => {
         fetchApi()
             .then((results) => {
-                setStory(results.data);
+                setStory(results);
             })
             .catch((err) => console.log(err));
     }, []);
 
-    console.log('story', story);
+    // console.log('story', story);
 
     const settings = {
         infinite: true,

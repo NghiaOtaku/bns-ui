@@ -21,10 +21,10 @@ function CardStory({ item }) {
                             {item.name}
                         </Button>
                     </h4>
-                    {/* <div className={cx('author-source')}>
-                        <button className={cx('author')}>{item.author?.name}</button>
-                        <button className={cx('badge-dich')}>{item.source?.slug}</button>
-                    </div> */}
+                    <div className={cx('author-source')}>
+                        {/* <button className={cx('author')}>{item.author?.name}</button> */}
+                        {/* <button className={cx('badge-dich')}>{item.source?.slug}</button> */}
+                    </div>
                     <div className={cx('story-info')}>
                         {/* <span className={cx('text-danger')}>
                             {item.total_words}
@@ -32,11 +32,11 @@ function CardStory({ item }) {
                         </span> */}
                         <span className={cx('text-success')}>
                             {item.chapters_count}
-                            <small> Chuong</small>
+                            <small> Chương</small>
                         </span>
                         <span className={cx('text-primary')}>
                             {item.sum_np_in_week}
-                            <small> De cu</small>
+                            <small> Đề cử/Tuần</small>
                         </span>
                     </div>
                     <div className={cx('story-quote')}>

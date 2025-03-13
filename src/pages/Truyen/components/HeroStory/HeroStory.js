@@ -8,7 +8,7 @@ import dayjs from 'dayjs';
 import Image from '~/components/Image';
 import Button from '~/components/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBook, faBookOpenReader, faHandHoldingHeart, faList, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faBook, faBookOpenReader, faHandHoldingHeart, faList, faMoneyBill, faStar } from '@fortawesome/free-solid-svg-icons';
 import { faPlusSquare } from '@fortawesome/free-regular-svg-icons';
 
 const cx = classNames.bind(styles);
@@ -23,7 +23,7 @@ function HeroStory({ dataStory }) {
 
     const fetchApi = async () => {
         let json = await axios.get(
-            `https://api.bachngocsach.vip/api/story/${dataStory.id}/user-recommendation?per_page=5`,
+            `https://ngocsach.com/api/story/${data.id}/user-recommendation?per_page=5`,
         );
         return json.data;
     };
@@ -93,20 +93,20 @@ function HeroStory({ dataStory }) {
                 </div>
                 <div className={cx('info-story-detail')}>
                     <span className={cx('info-story-detail-chu')}>
-                        {`${data.total_words}`}
-                        <small> Chu</small>
+                        {`${data.total_words?.toLocaleString()}`}
+                        <small> Chữ</small>
                     </span>
                     <span className={cx('info-story-detail-chuong')}>
-                        {`${data.chapters_count}`} <small> Chuong</small>
+                        {`${data.chapters_count?.toLocaleString()}`} <small> Chương</small>
                     </span>
                     <span className={cx('info-story-detail-doc')}>
-                        {`${data.view}`} <small> Doc</small>
+                        {`${data.view?.toLocaleString()}`} <small> Đọc</small>
                     </span>
                 </div>
                 {data.np !== 0 ? (
                     <div style={{ fontSize: '14px' }}>
-                        <span style={{ color: 'green' }}>
-                            {data.np} <small style={{ fontSize: '80%', fontWeight: '400' }}>Đề cử Ngọc Phiếu</small>
+                        <span style={{ color: 'orange' }}>
+                            {data.np?.toLocaleString()} <small style={{ fontSize: '80%', fontWeight: '400' }}>Đề cử Ngọc Phiếu</small>
                         </span>
                     </div>
                 ) : (
@@ -116,38 +116,34 @@ function HeroStory({ dataStory }) {
                     <div className={cx('info-story-docluutruyen')}>
                         <Button>
                             <FontAwesomeIcon icon={faBookOpenReader} />
-                            <span>Doc tu dau</span>
+                            <span>Đọc từ đầu</span>
                         </Button>
                         <Button>
                             <FontAwesomeIcon icon={faBook} />
-                            <span>Luu truyen</span>
+                            <span>Lưu truyện</span>
                         </Button>
                         <Button>
                             <FontAwesomeIcon icon={faList} />
-                            <span>D.S Chuong</span>
+                            <span>D.S Chương</span>
                         </Button>
                     </div>
                     <div className={cx('info-story-interaction')}>
                         <Button>
                             <div className={cx('info-story-interaction-item')}>
                                 <FontAwesomeIcon icon={faHandHoldingHeart} />
-                                <span>Ung ho</span>
+                                <span>Ủng hộ</span>
                             </div>
                         </Button>
                         <Button>
                             <div className={cx('info-story-interaction-item')}>
                                 <FontAwesomeIcon icon={faStar} />
-                                <span>Danh gia</span>
+                                <span>Đánh giá</span>
                             </div>
                         </Button>
                         <Button>
                             <div className={cx('info-story-interaction-item')}>
-                                <Image
-                                    style={{ width: '34px', height: '18px' }}
-                                    src={'https://bachngocsach.vip/img/np-icon.06a11732.png'}
-                                    alt=""
-                                />
-                                <span>De cu</span>
+                            <FontAwesomeIcon icon={faMoneyBill} />
+                                <span>Đề cử</span>
                             </div>
                         </Button>
                     </div>

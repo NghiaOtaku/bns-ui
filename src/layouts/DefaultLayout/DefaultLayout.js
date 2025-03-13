@@ -7,7 +7,7 @@ import EditorChoice from '../components/EditorChoice/EditorChoice';
 import Footer from '~/layouts/components/Footer';
 import Navbar from '~/components/Navbar';
 
-console.log(Navbar);
+// console.log(Navbar);
 
 const cx = classNames.bind(styles);
 

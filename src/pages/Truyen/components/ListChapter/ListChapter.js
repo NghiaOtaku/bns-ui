@@ -31,7 +31,7 @@ function ListChapter({ page = 1, data = {}, idStory, divRef = {}, onClick = () =
     const scrollToElement = () => divRef.current?.scrollIntoView();
 
     useEffect(() => {
-        fetch(`https://api.bachngocsach.vip/api/story/${idStory}/chapter?per_page=50&page=${page}&order_by=asc`)
+        fetch(`https://ngocsach.com/api/story/${idStory}/chapter?per_page=50&page=${page}&order_by=asc`)
             .then((res) => res.json())
             .then((res) => res.chapters)
             .then((res) => setChapter(res));
@@ -41,7 +41,7 @@ function ListChapter({ page = 1, data = {}, idStory, divRef = {}, onClick = () =
 
     const fetchChapter = async (page) => {
         const res = await fetch(
-            `https://api.bachngocsach.vip/api/story/${idStory}/chapter?per_page=50&page=${page}&order_by=asc`,
+            `https://ngocsach.com/api/story/${idStory}/chapter?per_page=50&page=${page}&order_by=asc`,
         );
         const data = await res.json();
         return data.chapters;

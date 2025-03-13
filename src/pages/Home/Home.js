@@ -11,20 +11,20 @@ function Home() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('card-stories')}>
-                {/* NewestStory */}
+                {/* Newest Story */}
                 <NewestStory
                     title="Truyen moi nhat"
                     marginbottom="20px"
                     name="truyen-moi-nhat"
-                    api="https://api.bachngocsach.vip/api/story-newest?per_page=12"
+                    api="https://ngocsach.com/api/story-newest?per_page=9"
                 />
 
-                {/* Newest Chapter api="https://api.bachngocsach.vip/api/latest-chapters?per_page=12"*/}
+                {/* Latest Chapter api="https://api.bachngocsach.vip/api/latest-chapters?per_page=12"*/}
                 <NewestStory
                     title="Chuong moi nhat"
                     chuong
                     name="chuong moi nhat"
-                    api="https://api.bachngocsach.vip/api/latest-chapters?per_page=12"
+                    api="https://ngocsach.com/api/latest-chapters?per_page=9"
                 />
             </div>
 

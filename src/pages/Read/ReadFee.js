@@ -13,6 +13,7 @@ import {
     faList,
     faHandHoldingHeart,
     faStar,
+    faMoneyBill,
 } from '@fortawesome/free-solid-svg-icons';
 import { faClock, faEdit, faFileWord } from '@fortawesome/free-regular-svg-icons';
 
@@ -228,7 +229,7 @@ function ReadFee({
                             }}
                         >
                             <FontAwesomeIcon icon={faFileWord} />
-                            {`${chapter.chapter?.words} Chữ`}
+                            {`3200 Chữ`}
                         </li>
                         <li
                             style={{
@@ -236,7 +237,7 @@ function ReadFee({
                                 marginRight: '10px',
                             }}
                         >
-                            <FontAwesomeIcon icon={faClock} /> {chapter.chapter?.publish_at}
+                            <FontAwesomeIcon icon={faClock} /> {`12/10/2021`}
                         </li>
                     </ul>
                     {chapter.chapter?.info ? <div className={cx('chapter-info')}>{chapter.chapter?.info}</div> : <></>}
@@ -280,18 +281,14 @@ function ReadFee({
                 </Button>
                 <Button>
                     <div className={cx('read-interaction-item')}>
-                        <Image
-                            style={{ width: '34px', height: '18px' }}
-                            src={'https://bachngocsach.vip/img/np-icon.06a11732.png'}
-                            alt=""
-                        />
+                    <FontAwesomeIcon icon={faMoneyBill} />
                         <span>De cu</span>
                     </div>
                 </Button>
             </div>
             <div className={cx('more-info')}>
-                <p>{`${chapter.chapter?.contributor.username}, ${chapter.chapter?.publish_at}`}</p>
-                <p>Lượt xem: {chapter.chapter?.views}</p>
+                <p>Nguyễn Văn A, 12/10/2021</p>
+                <p>Lượt xem: 3200</p>
             </div>
             <div
                 style={{

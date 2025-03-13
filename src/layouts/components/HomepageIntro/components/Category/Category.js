@@ -10,7 +10,7 @@ const cx = classNames.bind(styles);
 function Category() {
     return (
         <div className={cx('wrapper')}>
-            <Button to={`tag/tac-dai-than/51`}>
+            <Button to={`/tag/tac-dai-than`}>
                 <Image src={images.tacdaithan} />
             </Button>
             <Button to={`top-ngoc-phieu`}>
@@ -19,7 +19,7 @@ function Category() {
             <Button to={`truyen-thinh-hanh-trong-tuan`}>
                 <Image src={images.thinhhanhtuan} />
             </Button>
-            <Button to={`tag/doc-quyen/52`}>
+            <Button to={`tag/doc-quyen`}>
                 <Image src={images.docquyen} />
             </Button>
             <Button to={`truyen-hot`}>

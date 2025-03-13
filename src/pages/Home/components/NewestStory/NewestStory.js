@@ -16,7 +16,7 @@ function NewestStory({ title, marginbottom, view = false, chuong = false, ...pro
     let url = props.api;
 
     const fetchApi = async () => {
-        console.log('url', url);
+        // console.log('url', url);
         let json = await axios.get(url);
         return json.data;
     };
@@ -49,7 +49,7 @@ function NewestStory({ title, marginbottom, view = false, chuong = false, ...pro
                 <ul className={cx('heading-list')}>
                     {story.map((item, index) => {
                         let data = item.story || item || {};
-                        console.log(item, 'item');
+                        // console.log(item, 'item');
                         return (
                             <li key={index}>
                                 <div className={cx('list-group-item')}>

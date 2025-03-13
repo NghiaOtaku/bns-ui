@@ -13,6 +13,7 @@ import {
     faList,
     faHandHoldingHeart,
     faStar,
+    faMoneyBill,
 } from '@fortawesome/free-solid-svg-icons';
 import { faClock, faEdit, faFileWord } from '@fortawesome/free-regular-svg-icons';
 
@@ -42,8 +43,10 @@ function ReadFree({
     // const [idNextChapters, setIdNextChapters] = useState(0);
     // const [slugNextChapters, setSlugNextChapters] = useState('');
 
+    console.log('datas', data);
+
     const fetchApiStory = async () => {
-        let json = await axios.get(`https://api.bachngocsach.vip/api/story/${params.idStory}`);
+        let json = await axios.get(`https://ngocsach.com/api/story-by-slug/vot-thi-nhan`);
         return json.data;
     };
 
@@ -87,9 +90,11 @@ function ReadFree({
     //         });
     // }, [data]);
 
-    console.log('idNextChapter', idNextChapters);
-    console.log('slugNextChapter', slugNextChapters);
-    console.log('--------------------------------listchapter', listChapter);
+    // console.log('idNextChapter', idNextChapters);
+    // console.log('slugNextChapter', slugNextChapters);
+    // console.log('--------------------------------listchapter', listChapter);
+
+
     // const fetchNextChapter = async () => {
     //     const res = await fetch(`https://api.bachngocsach.vip/api/chapter/${idNextChapters}}`);
     //     const data = await res.json();
@@ -109,6 +114,8 @@ function ReadFree({
     //     // scroll to the top
     //     //window.scrollTo(0, 0)
     // };
+
+    console.log('story', story);
 
     const breadcrumbs = [
         <Link style={{ fontSize: '14px' }} key="1" href="/" color="#000">
@@ -188,7 +195,7 @@ function ReadFree({
                     <></>
                 )}
                 <div className={cx('wiki-content')}>
-                    <h1 className={cx('chapter-title')}>{chapter.chapter?.name}</h1>
+                    <h1 className={cx('chapter-title')}>Chương 1 Người vớt thi</h1>
                     <ul
                         style={{
                             display: 'flex',
@@ -202,7 +209,7 @@ function ReadFree({
                         >
                             <p style={{ fontSize: '18px' }}>
                                 <FontAwesomeIcon style={{ marginRight: '4px' }} icon={faBook} />
-                                {story.name}
+                                {`Võ Lâm Chi Mộng`}
                             </p>
                         </li>
                         <li
@@ -222,7 +229,7 @@ function ReadFree({
                             }}
                         >
                             <FontAwesomeIcon icon={faFileWord} />
-                            {`${chapter.chapter?.words} Chữ`}
+                            {` 3200 Chữ`}
                         </li>
                         <li
                             style={{
@@ -230,7 +237,7 @@ function ReadFree({
                                 marginRight: '10px',
                             }}
                         >
-                            <FontAwesomeIcon icon={faClock} /> {chapter.chapter?.publish_at}
+                            <FontAwesomeIcon icon={faClock} /> {`12/10/2021`}
                         </li>
                     </ul>
                     {chapter.chapter?.info ? <div className={cx('chapter-info')}>{chapter.chapter?.info}</div> : <></>}
@@ -249,7 +256,13 @@ function ReadFree({
                     )} */}
                     <div id="chapter-id" style={{ position: 'relative', marginTop: '16px' }}>
                         <div className={cx('chapter-content')}>
-                            <span class="webkit-chapter">{chapter.chapter?.content}</span>
+                            <span class="webkit-chapter">
+                            {`Đây là một câu chuyện kỳ ảo về hành trình của một kiếm khách trên con đường tu luyện. Mọi thử thách, sự hy sinh đều mang lại những bài học quý giá. Nhân vật chính, qua mỗi giai đoạn khó khăn, dần trưởng thành và nhận ra giá trị của sự kiên trì và lòng dũng cảm. \n
+                            Đây là một câu chuyện kỳ ảo về hành trình của một kiếm khách trên con đường tu luyện. Mọi thử thách, sự hy sinh đều mang lại những bài học quý giá. Nhân vật chính, qua mỗi giai đoạn khó khăn, dần trưởng thành và nhận ra giá trị của sự kiên trì và lòng dũng cảm. \n
+                            Đây là một câu chuyện kỳ ảo về hành trình của một kiếm khách trên con đường tu luyện. Mọi thử thách, sự hy sinh đều mang lại những bài học quý giá. Nhân vật chính, qua mỗi giai đoạn khó khăn, dần trưởng thành và nhận ra giá trị của sự kiên trì và lòng dũng cảm. \n
+                            Đây là một câu chuyện kỳ ảo về hành trình của một kiếm khách trên con đường tu luyện. Mọi thử thách, sự hy sinh đều mang lại những bài học quý giá. Nhân vật chính, qua mỗi giai đoạn khó khăn, dần trưởng thành và nhận ra giá trị của sự kiên trì và lòng dũng cảm. \n
+                            Đây là một câu chuyện kỳ ảo về hành trình của một kiếm khách trên con đường tu luyện. Mọi thử thách, sự hy sinh đều mang lại những bài học quý giá. Nhân vật chính, qua mỗi giai đoạn khó khăn, dần trưởng thành và nhận ra giá trị của sự kiên trì và lòng dũng cảm.`}
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -269,11 +282,7 @@ function ReadFree({
                 </Button>
                 <Button>
                     <div className={cx('read-interaction-item')}>
-                        <Image
-                            style={{ width: '34px', height: '18px' }}
-                            src={'https://bachngocsach.vip/img/np-icon.06a11732.png'}
-                            alt=""
-                        />
+                        <FontAwesomeIcon icon={faMoneyBill} />
                         <span>De cu</span>
                     </div>
                 </Button>

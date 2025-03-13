@@ -17,15 +17,18 @@ function HomepageIntro() {
     // api https://api.bachngocsach.vip/api/sliders
 
     const fetchApi = async () => {
-        let json = await axios.get('https://api.bachngocsach.vip/api/sliders');
+        // let json = await axios.get('http://localhost:3001/sliders');
+        let json = await axios.get('https://ngocsach.com/api/sliders');
+        // console.log("json.data", json.data);
         return json.data;
     };
 
     useEffect(() => {
         fetchApi()
             .then((results) => {
+                // console.log('results', results);
                 setStory(results.data);
-                return results.data;
+                return results;
             })
             .catch((err) => console.log(err));
     }, []);
@@ -37,10 +40,10 @@ function HomepageIntro() {
         const handleTest = setInterval(() => {
             setSlide((prev) => {
                 if (prev < 3) {
-                    setImage(story[prev + 1].image);
+                    setImage(story[prev + 1]?.image);
                     return prev + 1;
                 } else {
-                    setImage(story[0].image);
+                    setImage(story[0]?.image);
                     return (prev = 0);
                 }
             });
@@ -48,8 +51,8 @@ function HomepageIntro() {
         return () => clearInterval(handleTest);
     }, [story]);
 
-    console.log('story', story);
-    console.log('silde', slide);
+    // console.log('story', story);
+    // console.log('silde', slide);
 
     return (
         <div className={cx('wrapper')}>
@@ -70,10 +73,10 @@ function HomepageIntro() {
                                 key={index}
                                 onClick={() => {
                                     setSlide(index);
-                                    setImage(item.image);
+                                    setImage(item?.image);
                                 }}
                             >
-                                {item.name}
+                                {item?.name}
                             </div>
                         );
                     })}

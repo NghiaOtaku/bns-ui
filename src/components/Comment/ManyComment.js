@@ -37,14 +37,14 @@ function ManyComment({ data, selected, indexComment }) {
               return (
                   <div key={index} className={cx('comments-item-user-rep-item-many')}>
                       <img
-                          src={
-                              item.user?.avatar === 'https://api.bachngocsach.vip/storage/'
-                                  ? images.avatarDefault
-                                  : item.user?.avatar
+                          src={images.avatarDefault
+                            //   item.user?.avatar === 'https://api.bachngocsach.vip/storage/'
+                            //       ? images.avatarDefault
+                            //       : item.user?.avatar
                           }
                           alt=""
                       />
-                      <p>{item.user?.username}</p>
+                      <p>{item?.username}</p>
                       <div className={cx('comment-preview-content')}>{item?.content}</div>
                   </div>
               );
@@ -55,10 +55,10 @@ function ManyComment({ data, selected, indexComment }) {
                       <div className={cx('comments-user-avatar')}>
                           <a href="/trang-ca-nhan/9455.html" className={cx('avatar')}>
                               <img
-                                  src={
-                                      item.user?.avatar === 'https://api.bachngocsach.vip/storage/'
-                                          ? images.avatarDefault
-                                          : item.user?.avatar
+                                  src={images.avatarDefault
+                                    //   item.user?.avatar === 'https://api.bachngocsach.vip/storage/'
+                                    //       ? images.avatarDefault
+                                    //       : item.user?.avatar
                                   }
                                   alt=""
                               ></img>
@@ -67,7 +67,7 @@ function ManyComment({ data, selected, indexComment }) {
                       <div className={cx('user-comment-rep-content')}>
                           <h3 className={cx('user-comment-name')}>
                               <Button to="/trang-ca-nhan/9455.html" className={cx('user-info-link')}>
-                                  {item.user?.username}
+                                  {item?.username}
                               </Button>
                           </h3>
                           <div className={cx('rate-body')}>

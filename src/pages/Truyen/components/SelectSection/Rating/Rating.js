@@ -19,7 +19,7 @@ function Rating({ data }) {
     const [hasMore, setHasMore] = useState(true);
 
     const fetchApi = async () => {
-        let json = await axios.get(`https://api.bachngocsach.vip/api/story-ratings/${data.id}?page=${page}`);
+        let json = await axios.get(`https://ngocsach.com/api/story-ratings/${data.id}?page=${page}`);
         return json.data;
     };
 
@@ -81,7 +81,7 @@ function Rating({ data }) {
                                     <a href="/trang-ca-nhan/9455.html" className={cx('avatar')}>
                                         <img
                                             src={
-                                                item.user?.avatar === 'https://api.bachngocsach.vip/storage/'
+                                                item.user?.avatar === "https://ngocsach.com/storage/"
                                                     ? images.avatarDefault
                                                     : item.user?.avatar
                                             }

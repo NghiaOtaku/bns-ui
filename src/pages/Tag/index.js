@@ -17,11 +17,18 @@ function Tag() {
     let tagName = '';
 
     // console.log('location', location);
-    // console.log('param', param);
+    console.log('param', param);
+
+    function convertSlugToTitle(slug) {
+        return slug
+            .split('-') // Tách slug thành mảng từ
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1)) // Viết hoa chữ cái đầu của mỗi từ
+            .join(' '); // Kết hợp lại thành chuỗi
+    }
 
     switch (param.tag) {
         case 'tag':
-            tagName = 'tag';
+            tagName = param.slug;
             break;
         case 'the-loai':
             tagName = 'category';
@@ -32,19 +39,22 @@ function Tag() {
     const [cardStory, setCardStory] = useState([]);
     const [tag, setTag] = useState({});
 
+    // console.log('tag', tag);
+
     const fetchApi = async () => {
-        let json = await axios.get(`https://api.bachngocsach.vip/api/${tagName}/${param.id}/story?per_page=10&page=1`);
+        let json = await axios.get(`https://ngocsach.com/api/tag-stories-by-slug/${tagName}?per_page=10&page=1`);
+        console.log('json', json.data);
         return json.data;
     };
 
     const fetchApiTag = async () => {
-        let json = await axios.get(`https://api.bachngocsach.vip/api/${tagName}/${param.id}`);
+        let json = await axios.get(`https://api.bachngocsach.vip/api/${tagName}`);
         return json;
     };
 
     const fetchCardStory = async (page) => {
         const res = await fetch(
-            `https://api.bachngocsach.vip/api/${tagName}/${param.id}/story?per_page=10&page=${page}`,
+            `https://ngocsach.com/api/tag-stories-by-slug/${tagName}?per_page=10&page=${page}`,
         );
         const data = await res.json();
         // console.log('data', data);
@@ -84,7 +94,7 @@ function Tag() {
     return (
         <div className={cx('wrapper')}>
             <div ref={divRef} className={cx('tag-title')}>
-                <h3>Tác Đại Thần</h3>
+                <h3>{convertSlugToTitle(param.slug)}</h3>
                 <div className={cx('tab-categories-title')}>
                     <ul className={cx('tab-categories-title-list')}>
                         <li>

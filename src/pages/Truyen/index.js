@@ -25,6 +25,8 @@ function Truyen() {
 
     let data = location.state;
 
+    console.log('data', data);
+
     let idStory = data?.story_id || data?.id || '';
     let idAuthor = data.story?.author?.id || data?.author?.id || '';
     const [story, setStory] = useState([]);
@@ -39,8 +41,19 @@ function Truyen() {
         return json.data;
     };
 
+    fetch('https://ngocsach.com/api/chapter/count-view/772273', {
+        method: 'POST', // Chuyển sang phương thức POST
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ /* các tham số cần thiết */ }) // Thêm dữ liệu vào body nếu API yêu cầu
+      })
+      .then(response => response.json())
+      .then(data => console.log('Success:', data))
+      .catch(error => console.error('Error:', error));
+
     useEffect(() => {
-        fetchApi(`https://api.bachngocsach.vip/api/story/${idStory}`)
+        fetchApi(`https://ngocsach.com/api/story-by-slug/${data.slug}`)
             .then((results) => {
                 // window.location.reload();
                 setStory(results);
@@ -49,7 +62,7 @@ function Truyen() {
     }, [data]);
 
     useEffect(() => {
-        fetchApi(`https://api.bachngocsach.vip/api/story/${idStory}/5-chapters-newest?page=1`)
+        fetchApi(`https://ngocsach.com/api/story/${data.id}/5-chapters-newest?order_by=desc`)
             .then((results) => {
                 // window.location.reload();
                 setNewChapter(results);
@@ -57,11 +70,11 @@ function Truyen() {
             .catch((err) => console.log(err));
     }, [data]);
 
-    console.log('story', story);
+    // console.log('story', story);
 
     let idAuthor2 = idAuthor || story.author_id;
 
-    console.log('idAuthor2', idAuthor2);
+    // console.log('idAuthor2', idAuthor2);
 
     return (
         <div className={cx('wrapper')}>
@@ -107,8 +120,8 @@ function Truyen() {
                 </div>
                 <div className={cx('same-author')}>
                     <NewestStory
-                        title="Truyen cung tac gia"
-                        api={`https://api.bachngocsach.vip/api/author/${idAuthor2}/story`}
+                        title="Truyện cùng tác giả"
+                        api={`https://ngocsach.com/api/author/${idAuthor2}/story`}
                         view
                     />
                 </div>
