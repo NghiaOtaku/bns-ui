@@ -5,6 +5,7 @@ import classNames from 'classnames/bind';
 import styles from './HomepageIntro.module.scss';
 import Category from './components/Category';
 import Info from './components/Info';
+import Button from '~/components/Button';
 
 const cx = classNames.bind(styles);
 
@@ -16,15 +17,18 @@ function HomepageIntro() {
     // api https://api.bachngocsach.vip/api/sliders
 
     const fetchApi = async () => {
-        let json = await axios.get('https://api.bachngocsach.vip/api/sliders');
+        // let json = await axios.get('http://localhost:3001/sliders');
+        let json = await axios.get('https://ngocsach.com/api/sliders');
+        // console.log("json.data", json.data);
         return json.data;
     };
 
     useEffect(() => {
         fetchApi()
             .then((results) => {
+                // console.log('results', results);
                 setStory(results.data);
-                return results.data;
+                return results;
             })
             .catch((err) => console.log(err));
     }, []);
@@ -32,22 +36,23 @@ function HomepageIntro() {
     // setImage(story[0].image);
     // console.log(story[0].image);
 
-    // useEffect(() => {
-    //     const handleTest = setInterval(() => {
-    //         setSlide((prev) => {
-    //             if (prev < 3) {
-    //                 setImage(story[prev + 1].image);
-    //                 return prev + 1;
-    //             } else {
-    //                 setImage(story[0].image);
-    //                 return (prev = 0);
-    //             }
-    //         });
-    //     }, 3000);
-    //     return () => clearInterval(handleTest);
-    // }, [story]);
+    useEffect(() => {
+        const handleTest = setInterval(() => {
+            setSlide((prev) => {
+                if (prev < 3) {
+                    setImage(story[prev + 1]?.image);
+                    return prev + 1;
+                } else {
+                    setImage(story[0]?.image);
+                    return (prev = 0);
+                }
+            });
+        }, 3000);
+        return () => clearInterval(handleTest);
+    }, [story]);
 
-    // console.log(image);
+    // console.log('story', story);
+    // console.log('silde', slide);
 
     return (
         <div className={cx('wrapper')}>
@@ -56,7 +61,9 @@ function HomepageIntro() {
             </div>
             <div className={cx('intro-slides')}>
                 <div className={cx('img-slides')}>
-                    <img className={cx('img-tag-slides')} src={image || story[0]?.image} alt={`Anh truyen`} />
+                    <Button dataStory={story[slide]} to={`truyen/${story[slide]?.story_slug}`}>
+                        <img className={cx('img-tag-slides')} src={image || story[0]?.image} alt={`Anh truyen`} />
+                    </Button>
                 </div>
                 <div className={cx('text-slides')}>
                     {story.map((item, index) => {
@@ -66,10 +73,10 @@ function HomepageIntro() {
                                 key={index}
                                 onClick={() => {
                                     setSlide(index);
-                                    setImage(item.image);
+                                    setImage(item?.image);
                                 }}
                             >
-                                {item.name}
+                                {item?.name}
                             </div>
                         );
                     })}

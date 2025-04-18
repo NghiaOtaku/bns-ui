@@ -19,23 +19,26 @@ function EditorChoice() {
     const [story, setStory] = useState([]);
 
     const fetchApi = async () => {
-        let json = await axios.get('https://api.bachngocsach.vip/api/story-editor-choice?per_page=20');
+        // let json = await axios.get('http://localhost:3001/edittor-choice');
+        let json = await axios.get('https://ngocsach.com/api/recommended-stories?per_page=12&option=landing');
         return json.data;
     };
 
     useEffect(() => {
         fetchApi()
             .then((results) => {
-                setStory(results.data);
+                setStory(results);
             })
             .catch((err) => console.log(err));
     }, []);
+
+    // console.log('story', story);
 
     const settings = {
         infinite: true,
         slidesToShow: 8,
         slidesToScroll: 1,
-        autoplay: false,
+        autoplay: true, //or false to not autoplay
         speed: 500,
         autoplaySpeed: 3000,
         cssEase: 'ease-in',
@@ -56,7 +59,9 @@ function EditorChoice() {
                         return (
                             <div key={index} className={cx('card-story')}>
                                 <div className={cx('cover')}>
-                                    <Image src={item.cover} className={cx('custom-zoom-img')} alt="Anh truyen" />
+                                    <Button dataStory={item} to={`truyen/${item.slug}`}>
+                                        <Image src={item.cover} className={cx('custom-zoom-img')} alt="Anh truyen" />
+                                    </Button>
                                 </div>
                                 <h4>{item.name}</h4>
                                 <p>{item.author.name}</p>

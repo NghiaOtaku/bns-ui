@@ -30,7 +30,7 @@ function ModalMode() {
     return (
         <div className={cx('my-story')}>
             <img onClick={openModal} className={cx('bookmark-icon')} src={Bookmark} alt="bookmark" />
-            <Modal
+            {/* <Modal
                 isOpen={modalIsOpen}
                 onAfterOpen={afterOpenModal}
                 onRequestClose={closeModal}
@@ -48,11 +48,9 @@ function ModalMode() {
                         <Button>Danh sach day du</Button>
                     </div>
                 </div>
-            </Modal>
+            </Modal> */}
         </div>
     );
 }
-
-ReactDOM.render(<ModalMode />, document.getElementById('root'));
 
 export default ModalMode;

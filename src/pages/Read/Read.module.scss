@@ -1,0 +1,231 @@
+.wrapper {
+    margin-top: var(--default-layout-header-height);
+    background-color: white;
+    width: 100%;
+    position: relative;
+    padding-right: 7.5px;
+    padding-left: 7.5px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-radius: 4px;
+}
+
+.bread-crumbs {
+    display: flex;
+    align-items: center;
+    height: 45px;
+    font-size: 14px;
+    margin-top: 12px;
+    background-color: rgb(213, 213, 213);
+    border-radius: 4px;
+    padding: 12px 24px;
+}
+
+.btn-breadcrumbs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px !important;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+        box-shadow 0.15s ease-in-out;
+    background-color: var(--main_color);
+    border-color: var(--main_color);
+    color: white !important;
+    padding: 0.8rem 1.6rem;
+    line-height: 1.5;
+    border-radius: 0.48rem;
+
+    .icon {
+        padding: 5px;
+    }
+
+    &:hover {
+        background-color: var(--main_color_hover);
+        border-color: var(--main_color_hover);
+    }
+}
+
+.btn-breadcrumbs-list {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+        box-shadow 0.15s ease-in-out;
+    background-color: #6c757d;
+    border-color: #6c757d;
+    box-shadow: none;
+    margin: 0 4px;
+    padding: 0.8rem 1.6rem;
+    font-size: 2rem;
+    line-height: 1.5;
+    border-radius: 0.48rem;
+    color: white;
+
+    &:hover {
+        cursor: pointer;
+        background-color: #5a6268;
+        border-color: #545b62;
+    }
+}
+
+.wiki-content {
+    width: 100%;
+    font-size: 18px;
+    line-height: 24px;
+    font-family: Roboto;
+    background-color: transparent;
+    color: rgb(0, 0, 0);
+    padding-bottom: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+
+    .chapter-title {
+        font-size: 1.8rem;
+        margin-bottom: 8px;
+    }
+
+    .chapter-info {
+        display: block;
+        word-wrap: break-word;
+        white-space: pre-wrap;
+        line-height: inherit;
+        text-align: center;
+    }
+
+    .chapter-content {
+        display: block;
+        word-wrap: break-word;
+        white-space: pre-line;
+        line-height: inherit;
+        text-align: justify;
+        user-select: none;
+    }
+}
+
+.embed {
+    display: block;
+    position: relative;
+    width: 60%;
+    height: 0;
+    padding-bottom: 35.25%;
+    margin: 15px auto 0 auto;
+}
+
+.toggle-list-chapter {
+    margin: 0 auto;
+    width: 70%;
+}
+
+.read-interaction {
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    button {
+        font-size: 1.4rem;
+        width: 130px;
+        height: 55px;
+        transition: 0.25s;
+        color: var(--main_color);
+        margin-right: 4px;
+        padding: 4px 8px;
+
+        &:hover {
+            box-shadow: 0 0.5em 0.5em -0.3em var(--main_color_hover);
+            transform: translateY(-0.25em);
+        }
+    }
+
+    .read-interaction-item {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+}
+
+.more-info {
+    margin-top: 10px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    position: relative;
+
+    p {
+        color: var(--main_color);
+    }
+}
+
+.thanks-viewer {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin: 30px 0;
+
+    span {
+        color: var(--main_color);
+    }
+}
+
+.box-buy-chapter {
+    position: relative;
+    border-top: 1px solid #ccc;
+    padding-top: 15px;
+    margin-top: 20px;
+    margin-bottom: 12px;
+
+    h3 {
+        margin-top: 16px;
+        margin-bottom: 8px;
+        text-align: center;
+        font-size: 2.4rem;
+    }
+
+    p {
+        margin-top: 8px;
+        text-align: center;
+        font-size: 1.8rem;
+    }
+}
+
+.box-buy-chapter-mask {
+    top: -155px;
+    width: 100%;
+    background: linear-gradient(180deg, hsla(0, 0%, 58%, 0), hsla(0, 0%, 100%, 0.8200000000000001), #fff);
+    height: 135px;
+    position: absolute;
+}
+
+.box-buy-chapter::before {
+    content: '';
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url('https://bachngocsach.vip/img/lock-fill.165bb047.svg');
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position: 50%;
+}
+
+.disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.65;
+    box-shadow: none;
+}
