@@ -1,5 +1,6 @@
 import styles from './Truyen.module.scss';
 import classNames from 'classnames/bind';
+import { useLocation } from 'react-router-dom';
 
 import HeroStory from './components/HeroStory';
 import Button from '~/components/Button/Button';
@@ -9,6 +10,14 @@ import SelectSection from './components/SelectSection';
 const cx = classNames.bind(styles);
 
 function Truyen() {
+
+    const location = useLocation();
+    const data = location.state
+
+    let authorStory = data.author || data.story.author || {};
+    
+    console.log(authorStory, 'authorStory')
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
@@ -70,7 +79,7 @@ function Truyen() {
                 <div className={cx('same-author')}>
                     <NewestStory
                         title="Truyen cung tac gia"
-                        api="https://api.bachngocsach.vip/api/author/57/story"
+                        api={`https://api.bachngocsach.vip/api/author/${authorStory.id}/story`}
                         view
                     />
                 </div>

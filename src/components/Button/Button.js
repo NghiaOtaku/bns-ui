@@ -16,6 +16,7 @@ function Button({
     text = false,
     disabled = false,
     rounded = false,
+    dataStory={},
     leftIcon,
     rightIcon,
     children,
@@ -54,7 +55,7 @@ function Button({
         prefix,
     });
     return (
-        <Comp className={classes} {...props}>
+        <Comp className={classes} {...props} state={dataStory}>
             {leftIcon && <span className={cx('icon')}>{leftIcon}</span>}
             {children}
             {rightIcon && <span className={cx('icon')}>{rightIcon}</span>}

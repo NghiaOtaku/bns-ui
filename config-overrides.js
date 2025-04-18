@@ -1,5 +1,3 @@
-const { override, useBabelRc } = require("customize-cra");
+const { override, useBabelRc, addPostcssPlugins } = require('customize-cra');
 
-module.exports = override(
-    useBabelRc()
-);
+module.exports = override(useBabelRc(), addPostcssPlugins([require('tailwindcss'), require('autoprefixer')]));
