@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-regular-svg-icons';
-import { onAuthStateChanged, signOut } from 'firebase/auth';
+// import { onAuthStateChanged, signOut } from 'firebase/auth';
 import HeadlessTippy from '@tippyjs/react/headless';
 import { useEffect, useState } from 'react';
 
@@ -12,7 +12,7 @@ import DefaultAvatar from '~/assets/images/profile-avatar-default.png';
 import config from '~/config';
 import Button from '~/components/Button/Button';
 import { faRightToBracket, faUserPlus } from '@fortawesome/free-solid-svg-icons';
-import { auth } from '~/firebase';
+// import { auth } from '~/firebase';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import ModalMode from '../Modal';
 
@@ -25,25 +25,19 @@ function Action() {
     const [noti, setNoti] = useState([]);
 
     useEffect(() => {
-        const listen = onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setCurrentUser(user);
-            } else {
-                setCurrentUser(false);
-            }
-        });
-
-        return () => {
-            listen();
-        };
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+            setCurrentUser(JSON.parse(storedUser));
+        } else {
+            setCurrentUser(false);
+        }
     }, []);
 
     const userSignOut = () => {
-        signOut(auth)
-            .then(() => {
-                console.log('sign out successful');
-            })
-            .catch((error) => console.log(error));
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        setCurrentUser(false);
+        window.location.reload();
     };
 
     const BOX_LINK = [
@@ -132,7 +126,7 @@ function Action() {
                                             <div className={cx('box-info')}>
                                                 <img className={cx('box-avatar')} src={DefaultAvatar} alt="" />
                                                 <div className={cx('info-user')}>
-                                                    <h3>Username</h3>
+                                                    <h3>{currentUser.username}</h3>
                                                     <p>
                                                         <span>user</span>
                                                     </p>

@@ -20,7 +20,7 @@ function EditorChoice() {
 
     const fetchApi = async () => {
         // let json = await axios.get('http://localhost:3001/edittor-choice');
-        let json = await axios.get('https://ngocsach.com/api/recommended-stories?per_page=12&option=landing');
+        let json = await axios.get('https://ngocsach.com/api/suggest-story/stories');
         return json.data;
     };
 
@@ -59,12 +59,12 @@ function EditorChoice() {
                         return (
                             <div key={index} className={cx('card-story')}>
                                 <div className={cx('cover')}>
-                                    <Button dataStory={item} to={`truyen/${item.slug}`}>
-                                        <Image src={item.cover} className={cx('custom-zoom-img')} alt="Anh truyen" />
+                                    <Button dataStory={item} to={`truyen/${item.story.slug}`}>
+                                        <Image src={item.story.cover} className={cx('custom-zoom-img')} alt="Anh truyen" />
                                     </Button>
                                 </div>
-                                <h4>{item.name}</h4>
-                                <p>{item.author.name}</p>
+                                <h4>{item.story.name}</h4>
+                                <p>{item.story.author.name}</p>
                             </div>
                         );
                     })}

@@ -23,7 +23,7 @@ dayjs.locale(vi);
 function Truyen() {
     const location = useLocation();
 
-    let data = location.state;
+    let data = location.state.story;
 
     console.log('data', data);
 
@@ -56,10 +56,11 @@ function Truyen() {
         fetchApi(`https://ngocsach.com/api/story-by-slug/${data.slug}`)
             .then((results) => {
                 // window.location.reload();
+                console.log('results', results);
                 setStory(results);
             })
             .catch((err) => console.log(err));
-    }, [data]);
+    }, [data.slug]);
 
     useEffect(() => {
         fetchApi(`https://ngocsach.com/api/story/${data.id}/5-chapters-newest?order_by=desc`)
@@ -70,7 +71,7 @@ function Truyen() {
             .catch((err) => console.log(err));
     }, [data]);
 
-    // console.log('story', story);
+    console.log('story', story);
 
     let idAuthor2 = idAuthor || story.author_id;
 

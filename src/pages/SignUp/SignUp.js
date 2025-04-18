@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import logo from '~/assets/images/logo.49128792.png';
+import axios from '~/utils/axiosInstance';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -13,6 +15,16 @@ const Register = () => {
 
     const [error, setError] = useState('');
     const [passwordMismatch, setPasswordMismatch] = useState(false);
+    const navigate = useNavigate();
+
+    // Hàm tạo slug từ username
+    const slugify = (str) =>
+        str
+            .toLowerCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .replace(/\s+/g, '-')
+            .replace(/[^\w-]+/g, '');
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -22,7 +34,6 @@ const Register = () => {
             [name]: value,
         }));
 
-        // Chỉ kiểm tra khi gõ vào ô nhập lại mật khẩu
         if (name === 'confirmPassword') {
             setPasswordMismatch(value !== formData.password);
         }
@@ -37,7 +48,16 @@ const Register = () => {
         }
 
         try {
-            await axios.post('http://localhost:3001/api/auth/register', formData);
+            await axios.post('/api/auth/register', {
+                username: formData.username,
+                fullname: formData.fullname,
+                email: formData.email,
+                password: formData.password,
+                role_id: 2,
+                slug: slugify(formData.username),
+                role_list: [{ name: formData.role }],
+            });
+
             alert('Đăng ký thành công!');
             setError('');
             setFormData({
@@ -49,6 +69,9 @@ const Register = () => {
                 role: 'user',
             });
             setPasswordMismatch(false);
+
+            // Chuyển hướng đến trang đăng nhập
+            navigate('/dang-nhap');
         } catch (err) {
             setError(err.response?.data?.message || 'Đăng ký thất bại');
         }
@@ -57,6 +80,11 @@ const Register = () => {
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100">
             <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-md">
+                <div className="flex items-center justify-center pt-3">
+                    <a className="flex items-center" href="/">
+                        <img src={logo} alt="Bạch Ngọc Sách Logo" height="40" className="h-[40px]" />
+                    </a>
+                </div>
                 <h2 className="text-2xl font-semibold mb-6 text-center">Đăng ký tài khoản</h2>
                 {error && <p className="text-red-500 text-sm mb-4 text-center">{error}</p>}
                 <form onSubmit={handleSubmit} className="space-y-4">

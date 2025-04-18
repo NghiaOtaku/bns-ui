@@ -150,15 +150,16 @@
 }
 
 .rate {
-    flex: 1;
+  flex: 1;
 
-    .rate-story {
-        .star-box {
-            align-items: center;
-            display: flex;
-            justify-content: center;
-        }
+  .rate-story {
+    .star-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row; // hàng ngang
     }
+  }
 }
 
 .rate-box {

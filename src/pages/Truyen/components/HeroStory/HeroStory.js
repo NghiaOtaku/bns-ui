@@ -106,7 +106,8 @@ function HeroStory({ dataStory }) {
                 {data.np !== 0 ? (
                     <div style={{ fontSize: '14px' }}>
                         <span style={{ color: 'orange' }}>
-                            {data.np?.toLocaleString()} <small style={{ fontSize: '80%', fontWeight: '400' }}>Đề cử Ngọc Phiếu</small>
+                            {data.np?.toLocaleString()}{' '}
+                            <small style={{ fontSize: '80%', fontWeight: '400' }}>Đề cử Ngọc Phiếu</small>
                         </span>
                     </div>
                 ) : (
@@ -142,7 +143,7 @@ function HeroStory({ dataStory }) {
                         </Button>
                         <Button>
                             <div className={cx('info-story-interaction-item')}>
-                            <FontAwesomeIcon icon={faMoneyBill} />
+                                <FontAwesomeIcon icon={faMoneyBill} />
                                 <span>Đề cử</span>
                             </div>
                         </Button>
@@ -152,7 +153,12 @@ function HeroStory({ dataStory }) {
             <div className={cx('rate')}>
                 <div className={cx('rate-story')}>
                     <div className={cx('star-box')}>
-                        <RatingStar allowFraction={true} size={30} initialValue={data.avg_rating} readonly={true} />
+                        <RatingStar
+                            allowFraction={true}
+                            size={30}
+                            initialValue={data.avg_rating}
+                            readonly={true}
+                        />
                     </div>
                     <div className={cx('rate-box')}>
                         <button className={cx('rate-box-mask-icon')}>
