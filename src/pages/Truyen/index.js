@@ -23,7 +23,7 @@ dayjs.locale(vi);
 function Truyen() {
     const location = useLocation();
 
-    let data = location.state.story;
+    let data = location.state || location.state.story;
 
     console.log('data', data);
 
