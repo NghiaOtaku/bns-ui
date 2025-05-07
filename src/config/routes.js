@@ -2,7 +2,7 @@ const routes = {
     home: '/',
     truyen: '/truyen/:slug',
     tag: '/:tag/:slug',
-    read: '/dich/:storyName/:idStory/:chapterName/:idChapter',
+    read: '/dich/:storyName/:chapterNumber',
     signin: '/dang-nhap',
     signup: '/dang-ki',
 };

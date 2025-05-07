@@ -7,120 +7,105 @@ import axios from 'axios';
 import ReadFree from './ReadFree';
 import ReadFee from './ReadFee';
 import Comment from '~/components/Comment';
-import Button from '~/components/Button';
-import Image from '~/components/Image';
 
 const cx = classNames.bind(styles);
 
 function Read() {
-    const params = useParams();
+    const { storyName, chapterNumber: chapterParam } = useParams();
     const location = useLocation();
-    const data = location.state;
 
-    console.log('data:', data);
+    const initialData = location.state;
+    const chapterNumber = parseInt(chapterParam?.split('-')[1]);
+    const [chapterData, setChapterData] = useState(initialData || null);
+    const [storyData, setStoryData] = useState(null);
+    const [chapterContent, setChapterContent] = useState(null);
+    const nextChapterNumber = chapterNumber + 1;
+    const prevChapterNumber = chapterNumber - 1;
+    // const [slugNext, setSlugNext] = useState('');
+    // const [slugPrev, setSlugPrev] = useState('');
+    // const [idNext, setIdNext] = useState(null);
+    // const [idPrev, setIdPrev] = useState(null);
 
-    const [amountChapterFree, setAmountChapterFree] = useState(50);
-    // const [chapter, setChapter] = useState([]);
-    const [listChapter, setListChapter] = useState([]);
-    // const [page, setPage] = useState(chapter.chapter_number);
-    const [idNextChapters, setIdNextChapters] = useState();
-    const [idPrevChapters, setIdPrevChapters] = useState();
-    const [slugNextChapters, setSlugNextChapters] = useState('');
-    const [slugPrevChapters, setSlugPrevChapters] = useState('');
+    const page = Math.ceil((chapterData?.chapter_number + 1) / 50);
+    const stt = chapterData?.chapter_number % 50;
 
-    //api chapter https://api.bachngocsach.vip/api/chapter/95822
-    //api story  https://api.bachngocsach.vip/api/story/304
-
-    const page = Math.ceil((data.chapter_number + 1) / 50);
-    const stt = Math.floor(data.chapter_number % 50);
-
-    console.log('page', page);
-    console.log('stt', stt);
-
-    const fetchApiStory = async () => {
-        let json = await axios.get(`https://api.bachngocsach.vip/api/story/${params.idStory}`);
-        setAmountChapterFree(json.data.amount_free_chapters);
-        return json.data;
+    // Fetch full chapter content
+    const fetchChapterContent = async () => {
+        try {
+            const res = await axios.get(
+                `https://reader.be-web-vip.com/api/stories/${storyName}/chapters/${chapterNumber}`,
+            );
+            const data = res.data?.data;
+            if (data) {
+                setChapterData(data);
+                setChapterContent(data); // nếu sau này cần dùng encrypted `content`
+            }
+        } catch (err) {
+            console.error('Lỗi lấy chapter:', err);
+        }
     };
 
-    useEffect(() => {
-        fetchApiStory()
-            .then((results) => results)
-            .catch((err) => console.log(err));
-    }, []);
+    // Fetch story info (to get amount_free_chapters)
+    const fetchStoryData = async () => {
+        try {
+            const res = await axios.get(`https://ngocsach.com/api/story-by-slug/${storyName}`);
+            setStoryData(res.data);
+        } catch (err) {
+            console.error('Lỗi lấy story:', err);
+        }
+    };
+
+    // Fetch 50 chapters để lấy next/prev chapter slug
+    // const fetchChapterList = async () => {
+    //     try {
+    //         const res = await fetch(
+    //             `https://api.bachngocsach.vip/api/story/${idStory}/chapter?per_page=50&page=${page}&order_by=asc`,
+    //         );
+    //         const json = await res.json();
+    //         const chapters = json.chapters?.data || [];
+    //         setListChapter(chapters);
+
+    //         const next = chapters.find((ch) => ch.chapter_number === chapterData.chapter_number + 1);
+    //         const prev = chapters.find((ch) => ch.chapter_number === chapterData.chapter_number - 1);
+
+    //         setIdNext(next?.id);
+    //         setSlugNext(next?.slug || '');
+    //         setIdPrev(prev?.id);
+    //         setSlugPrev(prev?.slug || '');
+    //     } catch (err) {
+    //         console.error('Lỗi lấy danh sách chapter:', err);
+    //     }
+    // };
 
     useEffect(() => {
-        fetch(`https://api.bachngocsach.vip/api/story/${params.idStory}/chapter?per_page=50&page=${page}&order_by=asc`)
-            .then((res) => res.json())
-            .then((res) => res.chapters.data)
-            .then((res) => {
-                setListChapter(res);
-                setIdNextChapters(res.filter((x) => x.chapter_number === location.state.chapter_number + 1)[0].id);
-                setSlugNextChapters(res.filter((x) => x.chapter_number === location.state.chapter_number + 1)[0]?.slug);
-                setIdPrevChapters(res.filter((x) => x.chapter_number === location.state.chapter_number - 1)[0].id);
-                setSlugPrevChapters(res.filter((x) => x.chapter_number === location.state.chapter_number - 1)[0].slug);
-            });
-    }, [data]);
+        fetchChapterContent();
+    }, [storyName, chapterNumber]);
 
-    console.log('data', data);
-    console.log('idNextChapter', idNextChapters);
-    console.log('slugNextChapter', slugNextChapters);
-    console.log('================================amountchapterfree', amountChapterFree);
-    console.log('================================chapternow', location.state.chapter_number);
+    useEffect(() => {
+        if (chapterData) {
+            fetchStoryData();
+            // fetchChapterList();
+        }
+    }, [chapterData]);
 
-    return location.state.chapter_number <= amountChapterFree ? (
+    if (!chapterData || !storyData) return <p>Đang tải...</p>;
+
+    const isFree = chapterNumber <= 50;
+
+    const ReaderComponent = isFree ? ReadFree : ReadFee;
+
+    return (
         <>
-            <ReadFree
+            <ReaderComponent
                 page={page}
                 stt={stt}
-                listChapter={listChapter}
-                idNextChapters={idNextChapters}
-                idPrevChapters={idPrevChapters}
-                slugNextChapters={slugNextChapters}
-                slugPrevChapters={slugPrevChapters}
-                data={data}
-                params={params}
+                nextChapterNumber={nextChapterNumber}
+                prevChapterNumber={prevChapterNumber}
+                data={storyData}
+                dataChapter={chapterData}
+                params={{ storyName, chapterNumber: chapterParam }}
             />
-            <Comment data={data} idStory={params.idStory} />
-        </>
-    ) : (
-        <>
-            <ReadFee
-                page={page}
-                stt={stt}
-                listChapter={listChapter}
-                idNextChapters={idNextChapters}
-                idPrevChapters={idPrevChapters}
-                slugNextChapters={slugNextChapters}
-                slugPrevChapters={slugPrevChapters}
-                data={data}
-                params={params}
-            />
-            <Comment data={data} idStory={params.idStory} />
-            {/* <div className={cx('info-story-interaction')}>
-                <Button>
-                    <div className={cx('info-story-interaction-item')}>
-                        <FontAwesomeIcon icon={faHandHoldingHeart} />
-                        <span>Ung ho</span>
-                    </div>
-                </Button>
-                <Button>
-                    <div className={cx('info-story-interaction-item')}>
-                        <FontAwesomeIcon icon={faStar} />
-                        <span>Danh gia</span>
-                    </div>
-                </Button>
-                <Button>
-                    <div className={cx('info-story-interaction-item')}>
-                        <Image
-                            style={{ width: '34px', height: '18px' }}
-                            src={'https://bachngocsach.vip/img/np-icon.06a11732.png'}
-                            alt=""
-                        />
-                        <span>De cu</span>
-                    </div>
-                </Button>
-            </div> */}
+            <Comment data={chapterData} idStory={storyData?.id} />
         </>
     );
 }

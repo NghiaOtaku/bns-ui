@@ -19,8 +19,9 @@ dayjs.locale(vi);
 
 console.log(dayjs.locale());
 
-function ListChapter({ page = 1, data = {}, idStory, divRef = {}, onClick = () => {} }) {
-    console.log('formNow', dayjs('2023-01-01').fromNow());
+function ListChapter({ page = 1, data, idStory, divRef = {}, onClick = () => {} }) {
+    // console.log('formNow', dayjs('2023-01-01').fromNow());
+    // console.log('data List Chapter', data);  
     const fromNow = (x) => {
         let time = x;
         return dayjs(time).fromNow();
@@ -49,7 +50,6 @@ function ListChapter({ page = 1, data = {}, idStory, divRef = {}, onClick = () =
 
     const handlePageClick = async (data) => {
         scrollToElement();
-        console.log('dataselected', data.selected);
 
         let page = data.selected + 1;
 
@@ -98,8 +98,9 @@ function ListChapter({ page = 1, data = {}, idStory, divRef = {}, onClick = () =
                             <Button
                                 onClick={onClick}
                                 key={index}
-                                dataStory={item}
-                                to={`/dich/${item.slug}/${item.story_id}/${item.slug}/${item.id}`}
+                                dataChapter={item}
+                                dataStory={data}
+                                to={`/dich/${data.slug}/chuong-${index+1}`}
                                 className={cx('table-row')}
                             >
                                 <td className={cx('text-center', 'width-stt')}>{item.chapter_number}</td>

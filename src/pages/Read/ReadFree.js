@@ -26,16 +26,12 @@ const cx = classNames.bind(styles);
 function ReadFree({
     page,
     stt,
-    listChapter,
-    idNextChapters,
-    idPrevChapters,
-    slugNextChapters,
-    slugPrevChapters,
-    data,
+    nextChapterNumber,
+    prevChapterNumber,
+    data: dataStory,
     params,
+    dataChapter,
 }) {
-    const [story, setStory] = useState([]);
-    const [chapter, setChapter] = useState([]);
     const [reader, setReader] = useState([]);
     const [toggleListChaptersTop, setToggleListChaptersTop] = useState(false);
     const [toggleListChaptersBottom, setToggleListChaptersBottom] = useState(false);
@@ -43,41 +39,43 @@ function ReadFree({
     // const [idNextChapters, setIdNextChapters] = useState(0);
     // const [slugNextChapters, setSlugNextChapters] = useState('');
 
-    console.log('datas', data);
+    console.log('dataReadFree', dataStory);
+    console.log('paramsReadFree', params);
+    console.log('dataChapterFree', dataChapter);
 
-    const fetchApiStory = async () => {
-        let json = await axios.get(`https://ngocsach.com/api/story-by-slug/vot-thi-nhan`);
-        return json.data;
-    };
+    // const fetchApiStory = async () => {
+    //     let json = await axios.get(`https://ngocsach.com/api/story-by-slug/${params.storyName}`);
+    //     return json.data;
+    // };
 
-    const fetchApiChapter = async () => {
-        let json = await axios.get(`https://api.bachngocsach.vip/api/chapter/${params.idChapter}}`);
-        return json;
-    };
-    const fetchApiReader = async () => {
-        let json = await axios.get(`https://api.bachngocsach.vip/api/readers/${params.idChapter}?per_page=50&page=1`);
-        return json;
-    };
+    // const fetchApiChapter = async () => {
+    //     let json = await axios.get(`https://api.bachngocsach.vip/api/chapter/${params.idChapter}}`);
+    //     return json;
+    // };
+    // const fetchApiReader = async () => {
+    //     let json = await axios.get(`https://api.bachngocsach.vip/api/readers/${params.idChapter}?per_page=50&page=1`);
+    //     return json;
+    // };
 
-    useEffect(() => {
-        fetchApiStory()
-            .then((results) => {
-                setStory(results);
-            })
-            .catch((err) => console.log(err));
+    // useEffect(() => {
+    //     fetchApiStory()
+    //         .then((results) => {
+    //             setStory(results);
+    //         })
+    //         .catch((err) => console.log(err));
 
-        fetchApiChapter()
-            .then((results) => {
-                setChapter(results.data);
-            })
-            .catch((err) => console.log(err));
+    //     fetchApiChapter()
+    //         .then((results) => {
+    //             setChapter(results.data);
+    //         })
+    //         .catch((err) => console.log(err));
 
-        fetchApiReader()
-            .then((results) => {
-                setReader(results.data);
-            })
-            .catch((err) => console.log(err));
-    }, [data]);
+    //     fetchApiReader()
+    //         .then((results) => {
+    //             setReader(results.data);
+    //         })
+    //         .catch((err) => console.log(err));
+    // }, [data]);
 
     // useEffect(() => {
     //     fetch(`https://api.bachngocsach.vip/api/story/${params.idStory}/chapter?per_page=50&page=1&order_by=asc`)
@@ -115,22 +113,22 @@ function ReadFree({
     //     //window.scrollTo(0, 0)
     // };
 
-    console.log('story', story);
-
     const breadcrumbs = [
         <Link style={{ fontSize: '14px' }} key="1" href="/" color="#000">
             <Button to="/">Trang chu</Button>
         </Link>,
         <Link style={{ fontSize: '14px' }} underline="hover" color="#000" href="/" key="2">
-            <Button>{story.source?.name}</Button>
-        </Link>,
-        <Link style={{ fontSize: '14px' }} underline="hover" color="#000" key="3">
-            <Button dataStory={story} to={`/truyen/${story?.slug}`}>
-                {story?.name}
+            <Button to={`/truyen/${dataStory.slug}`} dataStory={dataStory}>
+                {dataStory?.name}
             </Button>
         </Link>,
+        // <Link style={{ fontSize: '14px' }} underline="hover" color="#000" key="3">
+        //     <Button dataStory={story} to={`/truyen/${story?.slug}`}>
+        //         {story?.name}
+        //     </Button>
+        // </Link>,
         <Typography style={{ fontSize: '14px' }} key="4" color="#6c757d">
-            {chapter.chapter?.name}
+            {dataChapter?.name}
         </Typography>,
     ];
 
@@ -153,8 +151,8 @@ function ReadFree({
                 >
                     <div ref={divRef}>
                         <Button
-                            dataStory={listChapter[stt - 2]}
-                            to={`/dich/${story.slug}/${story.id}/${slugPrevChapters}/${idPrevChapters}`}
+                            dataStory={dataStory}
+                            to={`/dich/${dataStory.slug}/chuong-${prevChapterNumber}`}
                             className={cx('btn-breadcrumbs', stt === 1 ? 'disabled' : '')}
                         >
                             <FontAwesomeIcon className={cx('icon')} icon={faAngleLeft} />
@@ -169,8 +167,8 @@ function ReadFree({
                     </Button>
                     <div>
                         <Button
-                            dataStory={listChapter[stt]}
-                            to={`/dich/${story.slug}/${story.id}/${slugNextChapters}/${idNextChapters}`}
+                            dataStory={dataStory}
+                            to={`/dich/${dataStory.slug}/chuong-${nextChapterNumber}`}
                             className={cx('btn-breadcrumbs')}
                         >
                             Chuong sau
@@ -187,15 +185,15 @@ function ReadFree({
                                 setToggleListChaptersTop(!toggleListChaptersTop);
                                 setToggleListChaptersBottom(false);
                             }}
-                            data={data}
-                            idStory={params.idStory}
+                            data={dataStory}
+                            idStory={dataStory.id}
                         />
                     </div>
                 ) : (
                     <></>
                 )}
                 <div className={cx('wiki-content')}>
-                    <h1 className={cx('chapter-title')}>Chương 1 Người vớt thi</h1>
+                    <h1 className={cx('chapter-title')}>{dataChapter?.name}</h1>
                     <ul
                         style={{
                             display: 'flex',
@@ -209,7 +207,7 @@ function ReadFree({
                         >
                             <p style={{ fontSize: '18px' }}>
                                 <FontAwesomeIcon style={{ marginRight: '4px' }} icon={faBook} />
-                                {`Võ Lâm Chi Mộng`}
+                                {dataStory?.name}
                             </p>
                         </li>
                         <li
@@ -219,7 +217,7 @@ function ReadFree({
                         >
                             <p style={{ fontSize: '18px' }}>
                                 <FontAwesomeIcon icon={faEdit} />
-                                {story.author?.name}
+                                {dataStory?.author?.name}
                             </p>
                         </li>
                         <li
@@ -229,7 +227,7 @@ function ReadFree({
                             }}
                         >
                             <FontAwesomeIcon icon={faFileWord} />
-                            {` 3200 Chữ`}
+                            {dataChapter?.words}
                         </li>
                         <li
                             style={{
@@ -237,10 +235,10 @@ function ReadFree({
                                 marginRight: '10px',
                             }}
                         >
-                            <FontAwesomeIcon icon={faClock} /> {`12/10/2021`}
+                            <FontAwesomeIcon icon={faClock} /> {dataChapter?.created_at}
                         </li>
                     </ul>
-                    {chapter.chapter?.info ? <div className={cx('chapter-info')}>{chapter.chapter?.info}</div> : <></>}
+                    {/* {chapter.chapter?.info ? <div className={cx('chapter-info')}>{chapter.chapter?.info}</div> : <></>} */}
                     {/* {chapter.chapter?.embed_link ? (
                         <div className={cx('embed')}>
                             <iframe
@@ -256,13 +254,7 @@ function ReadFree({
                     )} */}
                     <div id="chapter-id" style={{ position: 'relative', marginTop: '16px' }}>
                         <div className={cx('chapter-content')}>
-                            <span class="webkit-chapter">
-                            {`Đây là một câu chuyện kỳ ảo về hành trình của một kiếm khách trên con đường tu luyện. Mọi thử thách, sự hy sinh đều mang lại những bài học quý giá. Nhân vật chính, qua mỗi giai đoạn khó khăn, dần trưởng thành và nhận ra giá trị của sự kiên trì và lòng dũng cảm. \n
-                            Đây là một câu chuyện kỳ ảo về hành trình của một kiếm khách trên con đường tu luyện. Mọi thử thách, sự hy sinh đều mang lại những bài học quý giá. Nhân vật chính, qua mỗi giai đoạn khó khăn, dần trưởng thành và nhận ra giá trị của sự kiên trì và lòng dũng cảm. \n
-                            Đây là một câu chuyện kỳ ảo về hành trình của một kiếm khách trên con đường tu luyện. Mọi thử thách, sự hy sinh đều mang lại những bài học quý giá. Nhân vật chính, qua mỗi giai đoạn khó khăn, dần trưởng thành và nhận ra giá trị của sự kiên trì và lòng dũng cảm. \n
-                            Đây là một câu chuyện kỳ ảo về hành trình của một kiếm khách trên con đường tu luyện. Mọi thử thách, sự hy sinh đều mang lại những bài học quý giá. Nhân vật chính, qua mỗi giai đoạn khó khăn, dần trưởng thành và nhận ra giá trị của sự kiên trì và lòng dũng cảm. \n
-                            Đây là một câu chuyện kỳ ảo về hành trình của một kiếm khách trên con đường tu luyện. Mọi thử thách, sự hy sinh đều mang lại những bài học quý giá. Nhân vật chính, qua mỗi giai đoạn khó khăn, dần trưởng thành và nhận ra giá trị của sự kiên trì và lòng dũng cảm.`}
-                            </span>
+                            <span class="webkit-chapter">{dataChapter?.public_content}</span>
                         </div>
                     </div>
                 </div>
@@ -288,8 +280,8 @@ function ReadFree({
                 </Button>
             </div>
             <div className={cx('more-info')}>
-                <p>{`${chapter.chapter?.contributor.username}, ${chapter.chapter?.publish_at}`}</p>
-                <p>Lượt xem: {chapter.chapter?.views}</p>
+                <p>{`${dataChapter?.contributor?.username}, ${dataChapter?.created_at}`}</p>
+                <p>Lượt xem: {dataChapter?.views}</p>
             </div>
             <div
                 style={{
@@ -304,9 +296,9 @@ function ReadFree({
             >
                 <div>
                     <Button
-                        dataStory={listChapter[stt - 2]}
-                        to={`/dich/${story.slug}/${story.id}/${slugPrevChapters}/${idPrevChapters}`}
-                        className={cx('btn-breadcrumbs')}
+                        dataStory={dataStory}
+                        to={`/dich/${dataStory.slug}/chuong-${prevChapterNumber}`}
+                        className={cx('btn-breadcrumbs', stt === 1 ? 'disabled' : '')}
                     >
                         <FontAwesomeIcon className={cx('icon')} icon={faAngleLeft} />
                         Chuong truoc
@@ -320,8 +312,8 @@ function ReadFree({
                 </Button>
                 <div>
                     <Button
-                        dataStory={listChapter[stt]}
-                        to={`/dich/${story.slug}/${story.id}/${slugNextChapters}/${idNextChapters}`}
+                        dataStory={dataStory}
+                        to={`/dich/${dataStory.slug}/chuong-${nextChapterNumber}`}
                         className={cx('btn-breadcrumbs')}
                     >
                         Chuong sau
@@ -337,8 +329,8 @@ function ReadFree({
                             setToggleListChaptersBottom(!toggleListChaptersBottom);
                             setToggleListChaptersTop(false);
                         }}
-                        data={data}
-                        idStory={params.idStory}
+                        data={dataStory}
+                        idStory={dataStory.id}
                     />
                 </div>
             ) : (
@@ -349,7 +341,7 @@ function ReadFree({
                     <p>
                         Cám ơn:
                         {reader.data?.map((item, index) => {
-                            return <span key={index}>{`${item.username}, `}</span>;
+                            return <span key={index}>{`${item?.username}, `}</span>;
                         })}
                     </p>
                 </div>
